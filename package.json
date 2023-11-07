@@ -1,0 +1,29 @@
+{
+  "name": "node_api_new",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.2",
+    "client-oauth2": "^4.2.4",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-oauth-server": "^2.0.0",
+    "mongoose": "^6.12.0",
+    "nodemon": "^3.0.1",
+    "oauth2": "^0.0.1",
+    "oauth2-server": "^3.1.1",
+    "simple-oauth2": "^5.0.0",
+    "uuid": "^9.0.1",
+    "validator": "^13.11.0"
+  }
+}
