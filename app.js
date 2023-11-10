@@ -82,4 +82,5 @@ function authenticaterequest(req, res, next) {
 
 
 start();
+module.exports = app
 // module.exports= authenticaterequest
