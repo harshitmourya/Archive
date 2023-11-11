@@ -107,6 +107,10 @@ const allFirstschema = new mongoose.Schema({
         type:Number,
         required:true
     },
+    SecondInning :{
+        type:Number,
+        
+    }
     
 })
 
