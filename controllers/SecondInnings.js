@@ -3,7 +3,9 @@ const PlayerOnGround = require("../models/playerOnGroundDetail");
 const SecondInning = require("../models/SecondInnings")
 
 async function second(req,res){
+    console.log("Outside Try");
     try {
+        console.log("Inside Try");
         const api2 = new SecondInning({
             BattingTeamName: req.body.BattingTeamName,
             BattingTeamID: req.body.BattingTeamID,
