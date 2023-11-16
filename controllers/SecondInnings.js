@@ -30,12 +30,12 @@ async function second(req,res){
             OverCount: req.body.OverCount,
             MaidenOver: req.body.MaidenOver   
         }); 
-
+        
         console.log("Hello, Harshit");
         console.log("Object: ", api2);
 
-        console.log("battingteam: ", BattingTeamID);
-        console.log("bowlingteam: ", BowlingTeamID);
+        console.log("battingteam: ", api2.BattingTeamID);
+        console.log("bowlingteam: ", api2.BowlingTeamID);
         // const firstInningData = await FirstInning.findOne({ BowlingTeamID: bowlingTeamID });
 
          // Check if the inning already exists
