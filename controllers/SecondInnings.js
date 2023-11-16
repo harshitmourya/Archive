@@ -70,7 +70,7 @@ async function second(req,res){
             ExistingInning.NOBall = req.body.NOBall;
             ExistingInning.OverCount = req.body.OverCount;
             ExistingInning.MaidenOver = req.body.MaidenOver;
-            
+            console.log('inside is exist')
             // save the ExistingInning Data
              await ExistingInning.save();
 
@@ -100,15 +100,17 @@ async function second(req,res){
                 MaidenOver: req.body.MaidenOver
 
             })
+            console.log('inside is exist')
+
             await newSecond.save(); 
         }
         res.status(200).json({message: 'Second Inning Data saved Successfully'});
- 
+    console.log('response')
     } catch (error) {
         console.log("Team Not Found",error.message);
-        res.status(500).json({ message: 'Error saving data' });
-
+        res.status(500).json({ message: 'Error saving data 2222' });
     }
+    console.log("debug")
 }
 
 module.exports = second;    
