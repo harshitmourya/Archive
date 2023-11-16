@@ -44,7 +44,7 @@ async function second(req,res){
         });
         
     
-        if(SecondInning){
+        if(ExistingInning){
             // update secondInning Player details
 
             ExistingInning.Player_ID_OnStrike =  req.body.Player_ID_OnStrike;

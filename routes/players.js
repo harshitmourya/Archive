@@ -18,7 +18,7 @@ const first = require("../controllers/FirstInnings");
 const teamPlayers = require("../controllers/getAllTeamPlayers");
 const twoMatch  =require("../controllers/twoMatchData"); 
 const runningMatch = require("../controllers/getMatchRunningStatus");
-const second = require("../controllers/SecondInning");
+const second = require("../controllers/SecondInnings");
 
 
 router.route("/").get(getAllPlayers);
