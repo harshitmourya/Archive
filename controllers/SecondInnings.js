@@ -30,6 +30,8 @@ async function second(req,res){
             
         }); 
 
+        console.log('battingteam:-',BattingTeamID);
+        console.log("bowlingteam:-", BowlingTeamID)
         // const firstInningData = await FirstInning.findOne({ BowlingTeamID: bowlingTeamID });
 
          // Check if the inning already exists
