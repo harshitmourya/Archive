@@ -1,41 +1,73 @@
 const mongoose  = require( "mongoose");
-
 const allsecondschema = new mongoose.Schema({
     BattingTeamName: {
         type: String,
-        required:true
+        required:true,
+        ref: "PlayerOnGround"
     },
     BattingTeamID: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true
+        required: true,
+        ref:"PlayerOnGround"
     },
-    PlayerIDonBatting: {
+    Player_ID_OnStrike: {
+        type:mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref:"PlayerOnGround"
+    },
+    PlayerName_OnStrike: {
         type:String,
-        required: true
+        required: true,
+        ref:"PlayerOnGround"
     },
-    PlayerNameOnBatting:{
-        type: String,
-        required:true
+    Player_ID_OfStrike: {
+        type:mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref:"PlayerOnGround"
     },
+    PlayerName_OfStrike: {
+        type:String,
+        required: true,
+        ref:"PlayerOnGround"
+    },
+    // PlayerNameOnBatting:{
+    //     type: String,
+    //     required:true,
+    //     ref:"PlayerOnGround"
+    // },
+    WicketStatus:{
+        type:Boolean,
+        required:true,
+    },
+    BattingTeamwicketCount:{
+        type:Number,
+        required:true,
+    },
+
 
     BowlingTeamID: {
         type: mongoose.Schema.Types.ObjectId,
-        required:true
+        required:true,
+        ref:"PlayerOnGround"
     },
     BowlingTeamName:{
         type: String,
-        required: true
+        required: true,
+        ref:"PlayerOnGround"
     },
-    PlayerIDonBowling:{
+    Player_IDonBowling:{
         type:String,
-        required: true
+        required: true,
+        ref:"PlayerOnGround"
     },
     PlayerNameOnBowling:{
         type:String,
-        required:true
+        required:true,
+        ref:"PlayerOnGround",
     },
+
     runCount: {
-        type:String,
+        type:Number,
         required:true
     },
     wicketCount:{
@@ -73,9 +105,10 @@ const allsecondschema = new mongoose.Schema({
     MaidenOver: {
         type:Number,
         required:true
-    },
+    }
     
 })
+
 
 const All3secondgApi = new mongoose.model("SecondInning", allsecondschema);
 module.exports = All3secondgApi;

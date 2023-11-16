@@ -106,10 +106,6 @@ const allFirstschema = new mongoose.Schema({
     MaidenOver: {
         type:Number,
         required:true
-    },
-    SecondInning :{
-        type:Number,
-        
     }
     
 })
