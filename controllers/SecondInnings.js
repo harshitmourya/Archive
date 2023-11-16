@@ -40,6 +40,7 @@ async function second(req,res){
             // BattingTeamID: req.body.BattingTeamID, 
             // Player_ID_OnStrike: req.body.Player_ID_OnStrike,
             // Player_ID_OfStrike: req.body.Player_ID_OfStrike,
+            BowlingTeamID: req.body.BowlingTeamID,
             Player_IDonBowling: req.body.Player_IDonBowling,
           
         });
