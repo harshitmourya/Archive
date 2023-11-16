@@ -37,9 +37,9 @@ async function second(req,res){
 
          const ExistingInning = await FirstInning.findOne({
            
-            BattingTeamID: req.body.BattingTeamID, 
-            Player_ID_OnStrike: req.body.Player_ID_OnStrike,
-            Player_ID_OfStrike: req.body.Player_ID_OfStrike,
+            // BattingTeamID: req.body.BattingTeamID, 
+            // Player_ID_OnStrike: req.body.Player_ID_OnStrike,
+            // Player_ID_OfStrike: req.body.Player_ID_OfStrike,
             Player_IDonBowling: req.body.Player_IDonBowling,
           
         });
