@@ -1,6 +1,6 @@
 const FirstInning  = require("../models/FirstInnings");
 const PlayerOnGround = require("../models/playerOnGroundDetail");
-const secondInning = require("../models/SecondInnings")
+const SecondInning = require("../models/SecondInnings")
 
 async function second(req,res){
     try {
