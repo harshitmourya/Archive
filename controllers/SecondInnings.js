@@ -28,9 +28,10 @@ async function second(req,res){
             wideBall: req.body.wideBall,
             NOBall: req.body.NOBall,
             OverCount: req.body.OverCount,
-            MaidenOver: req.body.MaidenOver
-            
+            MaidenOver: req.body.MaidenOver   
         }); 
+        console.log("Hello, Harshit");
+        console.log("Object: ", api2);
 
         console.log('battingteam:-',BattingTeamID);
         console.log("bowlingteam:-", BowlingTeamID)
