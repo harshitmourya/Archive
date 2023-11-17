@@ -41,19 +41,19 @@ async function second(req,res){
          // Check if the inning already exists
 
 
-         const ExistingInning = await FirstInning.findOne({
+         const ExistingInning = await SecondInning.findOne({
            
             BattingTeamID: req.body.BattingTeamID, 
             Player_ID_OnStrike: req.body.Player_ID_OnStrike,
             Player_ID_OfStrike: req.body.Player_ID_OfStrike,
-            BattingTeamID: req.body.BattingTeamID,
+            BowlingTeamID:req.body.BowlingTeamID,
             Player_IDonBowling: req.body.Player_IDonBowling,
           
         });
         
         console.log("Existing Team ID: ", ExistingInning);
 
-        if(ExistingInning ){
+        if(ExistingInning){
             // update secondInning Player details
 
             ExistingInning.Player_ID_OnStrike =  req.body.Player_ID_OnStrike;
@@ -79,7 +79,9 @@ async function second(req,res){
             ExistingInning.NOBall = req.body.NOBall;
             ExistingInning.OverCount = req.body.OverCount;
             ExistingInning.MaidenOver = req.body.MaidenOver;
-            console.log('inside is exist')
+
+            console.log('inside is exist');
+
             // save the ExistingInning Data
              await ExistingInning.save();
 
