@@ -53,7 +53,7 @@ async function second(req,res){
         
         console.log("Existing Team ID: ", ExistingInning);
 
-        if(ExistingInning){
+        if(ExistingInning !==null){
             // update secondInning Player details
 
             ExistingInning.Player_ID_OnStrike =  req.body.Player_ID_OnStrike;
