@@ -50,8 +50,8 @@ async function  create(req, res) {
         const A = isExistTeam1._id;
         const B = isExistTeam2._id;
 
-        const C = isTeam1._id;
-        const D = isTeam2._id;
+        // const C = isTeam1._id;
+        // const D = isTeam2._id;
 
         console.log("weedede", team1_id);
         console.log('TEAM1 NAME:-', team1Name);
