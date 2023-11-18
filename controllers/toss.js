@@ -86,28 +86,28 @@ async function  create(req, res) {
     const i = Math.floor(Math.random() * 2);
 
     let message;
-    let winningTeam;
+    let TosswinningTeam;
     let TossWinningTeamId;
 
     try {
         if (i === 1) {
             message= `${tossData.team1Name} won the toss`;
-            winningTeam = tossData.team1Name;
+            TosswinningTeam = tossData.team1Name;
             TossWinningTeamId = tossData.team1_id;
             console.log(message);
             console.log("winning teamID: ", TossWinningTeamId);
-            console.log("winning team: ", winningTeam);
+            console.log("winning team: ", TosswinningTeam);
 
             // Assuming winningTeamDetail is a valid model
             const winningTeamObj = new winningTeamDetail({
                 teamId: TossWinningTeamId,
-                teamName: winningTeam
+                teamName: TosswinningTeam
             });
 
             await winningTeamObj.save();
         } else {
             message = `${tossData.team2Name} won the toss`;
-            winningTeam = tossData.team2Name;
+            TosswinningTeam = tossData.team2Name;
             TossWinningTeamId = tossData.team2_id;
             console.log(message);
             console.log("winning team: ", winningTeam);
@@ -115,7 +115,7 @@ async function  create(req, res) {
             // Assuming winningTeamDetail is a valid model
             const winningTeamObj = new winningTeamDetail({
                 teamId: TossWinningTeamId,
-                teamName: winningTeam
+                teamName: TosswinningTeam
             });
 
             await winningTeamObj.save();
