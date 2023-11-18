@@ -4,6 +4,7 @@ const teamDetailSchema = new mongoose.Schema({
     team: {
         type: String,
         required: true,
+        unique:true
     },
     place: {
         type: String,

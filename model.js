@@ -139,6 +139,7 @@ var getUser=function(username,password,callback){
 
 var getUserFromClient=function(client,callback){
     clientModel.findOne({
+        
         clientId:client.clientId,
         clientSecret:client.clientSecret,
         grants:'client Credentials'

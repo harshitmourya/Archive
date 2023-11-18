@@ -81,7 +81,7 @@ async function second(req,res){
             ExistingInning.MaidenOver = req.body.MaidenOver;
 
             console.log('inside is exist');
-
+            
             // save the ExistingInning Data
              await ExistingInning.save();
 
