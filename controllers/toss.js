@@ -87,20 +87,20 @@ async function  create(req, res) {
 
     let message;
     let winningTeam;
-    let WinningTeamId;
+    let TossWinningTeamId;
 
     try {
         if (i === 1) {
             message= `${tossData.team1Name} won the toss`;
             winningTeam = tossData.team1Name;
-            WinningTeamId = tossData.team1_id;
+            TossWinningTeamId = tossData.team1_id;
             console.log(message);
-            console.log("winning teamID: ", WinningTeamId);
+            console.log("winning teamID: ", TossWinningTeamId);
             console.log("winning team: ", winningTeam);
 
             // Assuming winningTeamDetail is a valid model
             const winningTeamObj = new winningTeamDetail({
-                teamId: WinningTeamId,
+                teamId: TossWinningTeamId,
                 teamName: winningTeam
             });
 
@@ -108,13 +108,13 @@ async function  create(req, res) {
         } else {
             message = `${tossData.team2Name} won the toss`;
             winningTeam = tossData.team2Name;
-            WinningTeamId = tossData.team2_id;
+            TossWinningTeamId = tossData.team2_id;
             console.log(message);
             console.log("winning team: ", winningTeam);
 
             // Assuming winningTeamDetail is a valid model
             const winningTeamObj = new winningTeamDetail({
-                teamId: WinningTeamId,
+                teamId: TossWinningTeamId,
                 teamName: winningTeam
             });
 
@@ -124,7 +124,7 @@ async function  create(req, res) {
         console.error("Error: ", error.message);
         message = "Error: " + error.message;
     }
-    return WinningTeamId;
+    return TossWinningTeamId;
 }
 
 if (isFound) {
@@ -133,7 +133,7 @@ if (isFound) {
     res.status(200).send({
         msg: message,
         tossData,
-        WinningTeamId: result
+        TossWinningTeamId: result
     });
 } else {
     res.status(400).send({
