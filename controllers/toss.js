@@ -45,7 +45,7 @@ async function  create(req, res) {
 
       console.log("Is Exist Team: ", isExistTeam1);
       
-      if (isExistTeam1 && isExistTeam2, isTeam1 && isTeam2) {
+      if (isExistTeam1 && isExistTeam2 & isTeam1 && isTeam2) {
         isFound = true;
         const A = isExistTeam1._id;
         const B = isExistTeam2._id;
