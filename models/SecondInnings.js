@@ -20,16 +20,6 @@ const allsecondschema = new mongoose.Schema({
         required: true,
         ref:"PlayerOnGround"
     },
-    Player_ID_OfStrike: {
-        type:mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref:"PlayerOnGround"
-    },
-    PlayerName_OfStrike: {
-        type:String,
-        required: true,
-        ref:"PlayerOnGround"
-    },
     // PlayerNameOnBatting:{
     //     type: String,
     //     required:true,
@@ -66,7 +56,11 @@ const allsecondschema = new mongoose.Schema({
         ref:"PlayerOnGround",
     },
 
-    runCount: {
+    batterRunCount: {
+        type:Number,
+        required:true
+    },
+    teamRunCount: {
         type:Number,
         required:true
     },
@@ -98,7 +92,7 @@ const allsecondschema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    OverCount: {
+    TeamOverCount: {
         type:Number,
         required:true
     },

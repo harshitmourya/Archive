@@ -12,8 +12,8 @@ async function second(req,res){
             BowlingTeamID: req.body.BowlingTeamID,
             Player_ID_OnStrike: req.body.Player_ID_OnStrike,
             PlayerName_OnStrike: req.body.PlayerName_OnStrike,
-            Player_ID_OfStrike: req.body.Player_ID_OfStrike,
-            PlayerName_OfStrike: req.body.PlayerName_OfStrike,
+            //Player_ID_OfStrike: req.body.Player_ID_OfStrike,
+            //PlayerName_OfStrike: req.body.PlayerName_OfStrike,
             WicketStatus: req.body.WicketStatus,
             BattingTeamwicketCount: req.body.BattingTeamwicketCount,
             BallCountofBatsman: req.body.BallCountofBatsman,
@@ -27,7 +27,7 @@ async function second(req,res){
             isSix: req.body.isSix,
             wideBall: req.body.wideBall,
             NOBall: req.body.NOBall,
-            OverCount: req.body.OverCount,
+            teamOverCount: req.body.teamOverCount,
             MaidenOver: req.body.MaidenOver   
         }); 
         
@@ -45,7 +45,7 @@ async function second(req,res){
            
             BattingTeamID: req.body.BattingTeamID, 
             Player_ID_OnStrike: req.body.Player_ID_OnStrike,
-            Player_ID_OfStrike: req.body.Player_ID_OfStrike,
+            //Player_ID_OfStrike: req.body.Player_ID_OfStrike,
             BowlingTeamID:req.body.BowlingTeamID,
             Player_IDonBowling: req.body.Player_IDonBowling,
           
@@ -57,9 +57,9 @@ async function second(req,res){
             // update secondInning Player details
 
             ExistingInning.Player_ID_OnStrike =  req.body.Player_ID_OnStrike;
-            ExistingInning.Player_ID_OfStrike =  req.body.Player_ID_OfStrike;
+            //ExistingInning.Player_ID_OfStrike =  req.body.Player_ID_OfStrike;
             ExistingInning.PlayerName_OnStrike = req.body.PlayerName_OnStrike;
-            ExistingInning.PlayerName_OfStrike = req.body.PlayerName_OfStrike;
+            //ExistingInning.PlayerName_OfStrike = req.body.PlayerName_OfStrike;
             ExistingInning.BattingTeamID = req.body.BattingTeamID;
             ExistingInning.BowlingTeamID = req.body.BowlingTeamID;
             ExistingInning.BowlingTeamName = req.body.BowlingTeamName;
@@ -77,7 +77,7 @@ async function second(req,res){
             ExistingInning.BallCountofBowler = req.body.BallCountofBowler;
             ExistingInning.wideBall = req.body.wideBall;
             ExistingInning.NOBall = req.body.NOBall;
-            ExistingInning.OverCount = req.body.OverCount;
+            ExistingInning.teamOverCount = req.body.teamOverCount;
             ExistingInning.MaidenOver = req.body.MaidenOver;
 
             console.log('inside is exist');
@@ -92,8 +92,8 @@ async function second(req,res){
                 BowlingTeamID: req.body.BowlingTeamID,
                 Player_ID_OnStrike: req.body.Player_ID_OnStrike,
                 PlayerName_OnStrike: req.body.PlayerName_OnStrike,
-                Player_ID_OfStrike: req.body.Player_ID_OfStrike,
-                PlayerName_OfStrike: req.body.PlayerName_OfStrike,
+                //Player_ID_OfStrike: req.body.Player_ID_OfStrike,
+                //PlayerName_OfStrike: req.body.PlayerName_OfStrike,
                 WicketStatus: req.body.WicketStatus,
                 BattingTeamwicketCount: req.body.BattingTeamwicketCount,
                 BallCountofBatsman: req.body.BallCountofBatsman,
@@ -107,7 +107,7 @@ async function second(req,res){
                 isSix: req.body.isSix,
                 wideBall: req.body.wideBall,
                 NOBall: req.body.NOBall,
-                OverCount: req.body.OverCount,
+                teamOverCount: req.body.teamOverCount,
                 MaidenOver: req.body.MaidenOver
 
             })
