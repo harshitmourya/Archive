@@ -57,7 +57,7 @@ const allFirstschema = new mongoose.Schema({
         ref:"PlayerOnGround",
     },
 
-    TeamRunCount: {
+    teamRunCount: {
         type:Number,
         required:true
     },
