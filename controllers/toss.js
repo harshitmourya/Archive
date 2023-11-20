@@ -110,7 +110,7 @@ async function  create(req, res) {
             TosswinningTeam = tossData.team2Name;
             TossWinningTeamId = tossData.team2_id;
             console.log(message);
-            console.log("winning team: ", winningTeam);
+            console.log("winning team: ", TosswinningTeam);
 
             // Assuming winningTeamDetail is a valid model
             const winningTeamObj = new winningTeamDetail({

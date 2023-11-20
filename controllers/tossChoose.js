@@ -5,6 +5,7 @@
   // const tossResult = require("../controllers/toss");
   // const winningTeamObj = require('../controllers/toss');
    const tossData  = require('../controllers/toss')
+   const tossResult =  require("../controllers/toss");
 
 
   var message = '';
@@ -28,10 +29,10 @@
       var teamId = req.body.teamId;
       var teamName = req.body.teamName;
 
-      var team1_id = tossData.team1_id;
-      var team2_id = tossData.team2_id;
-      var team1Name = tossData.team1Name;
-      var team2Name = tossData.team2Name;
+      var team1_id = tossResult.team1_id;
+      var team2_id = tossResult.team2_id;
+      var team1Name = tossResult.team1Name;
+      var team2Name = tossResult.team2Name;
 
       console.log("team1: ",team1_id);
       console.log("team2: ",team2_id);
