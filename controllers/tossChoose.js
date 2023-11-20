@@ -95,7 +95,7 @@ const toss = require("../models/toss");
        await isWinnertoss();
 
       //
-      await winner.save() 
+      // await winner.save() 
 
       res.status(200).send({ message: "data saved" });
 
