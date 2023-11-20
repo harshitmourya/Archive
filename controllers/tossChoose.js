@@ -57,36 +57,36 @@
           
           try {
 
-            if(isExistteam1 === teamId){
+            if(isExistteam1 && isExistteam1.team1_id === teamId){
               if(isFound = true){
               message = `${winner.teamName} Choose to Bat First`;
               chooseTeam = winner.teamName;
-              console.log(winner.teamName,"Choose to Bat first");
+              console.log(winner.chooseTeam,"Choose to Bat first");
             }else{
               message = `${winner.teamName} Choose to Bowl First`;
               chooseTeam = winner.teamName;
-              console.log(winner.teamName,"Choose to Bowl first");
+              console.log(winner.chooseTeam,"Choose to Bowl first");
             }
-            if(isExistteam2 === teamId){
+            if(isExistteam2 && isExistteam2.team2_id ===teamId){
               if(isFound = true){
                 message = `${winner.teamName} Choose to Bat First`;
                 chooseTeam = winner.teamName;
-                console.log(winner.teamName,"Choose to Bat First")
+                console.log(winner.chooseTeam,"Choose to Bat First")
               }else {
                 message = `${winner.teamName} Choose to Bowl First`;
                 chooseTeam = winner.teamName;   
-                console.log(winner.teamName,"Choose to Bowl First");
+                console.log(winner.chooseTeam,"Choose to Bowl First");
               }
             }
           }
 
           } catch (error) {
-            console.log(error.message)
+            console.log( "error :-",error.message)
           }   
           
 
         } catch (error) {
-          console.log(error);
+          console.log( "error :-",error.message);
           message = 'An error occurred while doing the toss result.';
         }
       }
