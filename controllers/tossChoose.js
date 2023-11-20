@@ -6,6 +6,7 @@
   // const winningTeamObj = require('../controllers/toss');
    const tossData  = require('../controllers/toss')
    const tossResult =  require("../controllers/toss");
+const toss = require("../models/toss");
 
 
   var message = '';
@@ -49,8 +50,8 @@
         try {
 
           // 
-          const isExistteam1 = await teamDetail.findOne({ team1_id:winner.teamId });
-          const isExistteam2 = await teamDetail.findOne({ team2_id:winner.teamId });
+          const isExistteam1 = await toss.findOne({ team1_id:winner.teamId });
+          const isExistteam2 = await toss.findOne({ team2_id:winner.teamId });
               
           console.log( " isteam1",isExistteam1  );
           console.log('isteam2',isExistteam2 );
