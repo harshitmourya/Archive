@@ -49,8 +49,8 @@
         try {
 
           // 
-          const isExistteam1 = await Toss.findOne({ team1_id:teamId });
-          const isExistteam2 = await Toss.findOne({ team2_id:teamId });
+          const isExistteam1 = await teamDetail.findOne({ team1_id:winner.teamId });
+          const isExistteam2 = await teamDetail.findOne({ team2_id:winner.teamId });
               
           console.log( " isteam1",isExistteam1  );
           console.log('isteam2',isExistteam2 );
