@@ -20,7 +20,8 @@ async function first(req, res) {
             Player_IDonBowling: req.body.Player_IDonBowling,
             PlayerNameOnBowling: req.body.PlayerNameOnBowling,
             BallCountofBowler: req.body.BallCountofBowler,
-            runCount: req.body.runCount,
+            batterRunCount: req.body.batterRunCount,
+            teamRunCount:req.body.teamRunCount,
             wicketCount: req.body.wicketCount,
             isFour: req.body.isFour,
             isSix: req.body.isSix,
@@ -68,7 +69,8 @@ async function first(req, res) {
             existingInning.PlayerNameOnBowling = req.body.PlayerNameOnBowling;
 
             // Updating other fields also
-            existingInning.runCount = req.body.runCount;
+            existingInning.batterRunCount= req.body.batterRunCount,
+            existingInning.teamRunCount= req.body.teamRunCount,
             existingInning.isSix = req.body.isSix;
             existingInning.isFour = req.body.isFour;
             existingInning.wicketCount = req.body.wicketCount;
@@ -98,7 +100,8 @@ async function first(req, res) {
                 Player_IDonBowling: req.body.Player_IDonBowling,
                 PlayerNameOnBowling: req.body.PlayerNameOnBowling,
                 BallCountofBowler: req.body.BallCountofBowler,
-                runCount: req.body.runCount,
+                batterRunCount: req.body.batterRunCount,
+                teamRunCount:req.body.teamRunCount,
                 wicketCount: req.body.wicketCount,
                 isFour: req.body.isFour,
                 isSix: req.body.isSix,
