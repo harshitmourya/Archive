@@ -50,8 +50,8 @@ const toss = require("../models/toss");
         try {
 
           // 
-          const isExistteam1 = await toss.findOne({ team1_id:winner.teamId });
-          const isExistteam2 = await toss.findOne({ team2_id:winner.teamId });
+          const isExistteam1 = await toss.findOne({ team1_id:teamId });
+          const isExistteam2 = await toss.findOne({ team2_id:teamId });
               
           console.log( " isteam1",isExistteam1  );
           console.log('isteam2',isExistteam2 );
