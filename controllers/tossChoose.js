@@ -19,7 +19,7 @@
         teamId: req.body.teamId,
         teamName: req.body.teamName
       });
-      console.log(winner)
+      console.log("winnerID:-",winner)
 
       // 
       // var optionA = "batting";
@@ -93,7 +93,8 @@
 
        await isWinnertoss();
 
-      // 
+      //
+      await winner.save() 
 
       res.status(200).send({ message });
 
