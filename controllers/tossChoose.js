@@ -29,10 +29,10 @@
       var teamId = req.body.teamId;
       var teamName = req.body.teamName;
 
-      var team1_id = tossResult.team1_id;
-      var team2_id = tossResult.team2_id;
-      var team1Name = tossResult.team1Name;
-      var team2Name = tossResult.team2Name;
+      var team1_id = tossData.team1_id;
+      var team2_id = tossData.team2_id;
+      var team1Name = tossData.team1Name;
+      var team2Name = tossData.team2Name;
 
       console.log("team1: ",team1_id);
       console.log("team2: ",team2_id);
@@ -49,8 +49,8 @@
         try {
 
           // 
-          const isExistteam1 = await Toss.findOne({ team1_id:team1_id });
-          const isExistteam2 = await Toss.findOne({ team2_id:team2_id });
+          const isExistteam1 = await Toss.findOne({ team1_id:teamId });
+          const isExistteam2 = await Toss.findOne({ team2_id:teamId });
               
           console.log( " isteam1",isExistteam1  );
           console.log('isteam2',isExistteam2 );
@@ -58,7 +58,7 @@
           try {
 
             if(isExistteam1 && isExistteam1.team1_id === teamId){
-              if(isFound = true){
+              if(isFound){
               message = `${winner.teamName} Choose to Bat First`;
               chooseTeam = winner.teamName;
               console.log(winner.chooseTeam,"Choose to Bat first");
@@ -68,7 +68,7 @@
               console.log(winner.chooseTeam,"Choose to Bowl first");
             }
             if(isExistteam2 && isExistteam2.team2_id ===teamId){
-              if(isFound = true){
+              if(isFound  ){
                 message = `${winner.teamName} Choose to Bat First`;
                 chooseTeam = winner.teamName;
                 console.log(winner.chooseTeam,"Choose to Bat First")
