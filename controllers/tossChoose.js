@@ -96,7 +96,7 @@
       //
       await winner.save() 
 
-      res.status(200).send({ message });
+      res.status(200).send({ message: "data saved" });
 
     } catch (error) {
       console.log(error);
