@@ -1,7 +1,8 @@
 const FirstInning = require("../models/FirstInnings");
 const TwoMatchData = require("../models/saveMatchBTW2teams");
 const PlayerOnGround = require("../models/playerOnGroundDetail");
-const uuid = require('uuid');
+
+const SecondInning = require("../models/SecondInnings");
 
 
 async function twoMatch(req, res) {
@@ -19,11 +20,16 @@ async function twoMatch(req, res) {
 
     async function isTeam() {
         try {
+            if(FirstInning){
             const isBattingTeam = await FirstInning.findOne({ BattingTeamID: battingTeamID });
-            const isBowlingTeam = await FirstInning.findOne({ BowlingTeamID: bowlingTeamID });
+            // const isBowlingTeam = await FirstInning.findOne({ BowlingTeamID: bowlingTeamID });
 
-            console.log(isBattingTeam);
-            console.log(isBowlingTeam);
+            console.log("FirstInning :-",isBattingTeam);
+
+            } else(SecondInning)
+                const isSecondBattingTeam = await SecondInning.findOne({BattingTeamID:battingTeamID})
+                console.log("SecondInning :-",isSecondBattingTeam);
+            
         }
         catch (error) {
             console.log(error.message, " BattingTeam and BowlingTeam not found");
@@ -32,21 +38,11 @@ async function twoMatch(req, res) {
 
     try {
 
-        // function generateMatchID(isBattingTeam,isBowlingTeam) {
-        //     // Create a unique match ID based on team IDs and a timestamp
-        //     const timestamp = Date.now(); // Get the current timestamp
-        //     const matchID = `${battingTeamID}-${bowlingTeamID}-${timestamp}-${uuid.v4()}`;
-        //     console.log(matchID);
-        //     return matchID;
-        // }
-        
-
-
         const allTeamData = await twoTeamDetail.save();
         console.log(allTeamData);
         
         isTeam();
-        //generateMatchID();
+        
 
         res.status(200).json({ message: "Two match data saved successfully" });
     } catch (error) {
@@ -57,3 +53,17 @@ async function twoMatch(req, res) {
 
 module.exports = twoMatch;
 
+
+
+
+
+
+
+// function generateMatchID(isBattingTeam,isBowlingTeam) {
+        //     // Create a unique match ID based on team IDs and a timestamp
+        //     const timestamp = Date.now(); // Get the current timestamp
+        //     const matchID = `${battingTeamID}-${bowlingTeamID}-${timestamp}-${uuid.v4()}`;
+        //     console.log(matchID);
+        //     return matchID;
+        // }
+        
