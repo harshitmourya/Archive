@@ -20,18 +20,18 @@ async function twoMatch(req, res) {
 
     async function isTeam() {
         try {
-            if(FirstInning){
+            
             const isBattingTeam = await FirstInning.findOne({ BattingTeamID: battingTeamID });
-            // const isBowlingTeam = await FirstInning.findOne({ BowlingTeamID: bowlingTeamID });
+             const isSecondBattingTeam = await SecondInning.findOne({ BattingTeamID: battingTeamID });
 
             console.log("FirstInning :-",isBattingTeam);
 
-            } else{
+             
             
-                const isSecondBattingTeam = await SecondInning.findOne({BattingTeamID:battingTeamID})
+                //const isSecondBattingTeam = await SecondInning.findOne({BattingTeamID:battingTeamID})
                 console.log("SecondInning :-",isSecondBattingTeam);
             }
-        }
+        
         catch (error) {
             console.log(error.message, " BattingTeam and BowlingTeam not found");
         }
