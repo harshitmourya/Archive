@@ -21,7 +21,8 @@ async function second(req,res){
             Player_IDonBowling: req.body.Player_IDonBowling,
             PlayerNameOnBowling: req.body.PlayerNameOnBowling,
             BallCountofBowler: req.body.BallCountofBowler,
-            runCount: req.body.runCount,
+            batterRunCount: req.body.batterRunCount,
+            teamRunCount: req.body.teamRunCount,
             wicketCount: req.body.wicketCount,
             isFour: req.body.isFour,
             isSix: req.body.isSix,
@@ -68,7 +69,8 @@ async function second(req,res){
 
             // update other Fields also related to secondInning
             
-            ExistingInning.runCount = req.body.runCount;
+            ExistingInning.batterRunCount = req.body.batterRunCount;
+            ExistingInning.teamRunCount= req.body.teamRunCount,
             ExistingInning.isSix = req.body.isSix;
             ExistingInning.isFour = req.body.isFour;    
             ExistingInning.wicketCount = req.body.wicketCount;
@@ -101,7 +103,8 @@ async function second(req,res){
                 Player_IDonBowling: req.body.Player_IDonBowling,
                 PlayerNameOnBowling: req.body.PlayerNameOnBowling,
                 BallCountofBowler: req.body.BallCountofBowler,
-                runCount: req.body.runCount,
+                batterRunCount: req.body.batterRunCount,
+                teamRunCount: req.body.teamRunCount,
                 wicketCount: req.body.wicketCount,
                 isFour: req.body.isFour,
                 isSix: req.body.isSix,
