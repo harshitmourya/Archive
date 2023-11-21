@@ -28,7 +28,7 @@ async function twoMatch(req, res) {
 
             // } 
             // 
-                const isSecondBattingTeam = await SecondInning.findOne({BowlingTeamID:bowlingTeamID})
+                const isSecondBattingTeam = await SecondInning.findOne({BattingTeamID:battingTeamID})
                 console.log("SecondInning :-",isSecondBattingTeam);
             
         }
