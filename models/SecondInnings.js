@@ -92,7 +92,7 @@ const allsecondschema = new mongoose.Schema({
         type:Number,
         required:true
     },
-    TeamOverCount: {
+    teamOverCount: {
         type:Number,
         required:true
     },
