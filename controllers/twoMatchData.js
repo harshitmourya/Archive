@@ -21,7 +21,7 @@ async function twoMatch(req, res) {
     async function isTeam() {
         try {
             
-            const isBattingTeam = await FirstInning.findOne().sort({ BattingTeamID: battingTeamID }).limit(1);
+            const isBattingTeam = await FirstInning.findOne({ BattingTeamID: battingTeamID });
              const isSecondBattingTeam = await SecondInning.findOne({ BowlingTeamID: bowlingTeamID });
 
             console.log("FirstInning :-",isBattingTeam);
