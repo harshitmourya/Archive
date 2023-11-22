@@ -101,7 +101,10 @@ const allsecondschema = new mongoose.Schema({
         required:true
     }
     
-})
+},{
+    timestamps:true
+}
+)
 
 
 const All3secondgApi = new mongoose.model("SecondInning", allsecondschema);
