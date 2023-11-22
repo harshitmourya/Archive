@@ -6,9 +6,19 @@ const matchDetailSchema = new mongoose.Schema({
         required: true,
         ref:"TeamDetails"
     },
+    team1Name:{
+        type:mongoose.Schema.Types.String,
+        required:true,
+        ref:"TeamDetails"
+    },
     team2_id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
+        ref:"TeamDetails"
+    },
+    team2Name:{
+        type:mongoose.Schema.Types.String,
+        required:true,
         ref:"TeamDetails"
     },
     totalOver: {
@@ -18,6 +28,10 @@ const matchDetailSchema = new mongoose.Schema({
     TosswinningTeam: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
+    },
+    choose:{
+        type:String,
+        required:true
     }
     
 });
