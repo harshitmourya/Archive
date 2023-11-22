@@ -102,7 +102,10 @@ const allFirstschema = new mongoose.Schema({
         required:true
     }
     
-})
+},{
+    timestamps:true
+  
+ })
 
 const All3api = new mongoose.model("FirstInning", allFirstschema);
 module.exports = All3api;
