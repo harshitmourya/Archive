@@ -4,6 +4,7 @@ const PlayerOnGround = require("../models/playerOnGroundDetail");
 
 const SecondInning = require("../models/SecondInnings");
 
+var message = ""
 var isBattingTeam = '';
 
 async function twoMatch(req, res) {
@@ -39,6 +40,7 @@ async function twoMatch(req, res) {
         catch (error) {
             console.log(error.message, " BattingTeam and BowlingTeam not found");
         }
+        res.status(200).send({message:isBattingTeam})
     }
 
     try {
@@ -51,7 +53,7 @@ async function twoMatch(req, res) {
 
         res.status(200).json({ message: "Two match data saved successfully",
     
-        isBattingTeam});
+         isBattingTeam});
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Error saving two match data" });
