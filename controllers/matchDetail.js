@@ -10,7 +10,7 @@ async function saveMatchDetails(req,res){
             team2_id:req.body.team2_id,
             team2Name:req.body.team2Name,
             totalOver:req.body.totalOver,
-            TosswinningTeam:req.body.TosswinningTeam,
+            TosswinningTeamId:req.body.TosswinningTeamId,
             choose:req.body.choose
         })
 
@@ -29,7 +29,7 @@ async function saveMatchDetails(req,res){
                 const isteam1 = await TeamDetail.findOne({_id:team1_id});
                 const isteam2 = await TeamDetail.findOne({_id:team2_id});
 
-                
+
                 
                 console.log("team1ID :-",isteam1);
                 console.log("team2ID :-", isteam2);
@@ -42,7 +42,7 @@ async function saveMatchDetails(req,res){
         }
 
         await isExistTeam()
-
+        res.status(200).json({message:"Data saved successfully"})
 
 }
 

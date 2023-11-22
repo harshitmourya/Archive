@@ -25,7 +25,7 @@ const matchDetailSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    TosswinningTeam: {
+    TosswinningTeamId: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
     },
