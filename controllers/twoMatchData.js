@@ -4,6 +4,7 @@ const PlayerOnGround = require("../models/playerOnGroundDetail");
 
 const SecondInning = require("../models/SecondInnings");
 
+var isBattingTeam = '';
 
 async function twoMatch(req, res) {
     var battingTeamID = req.body.battingTeamID;
@@ -21,15 +22,18 @@ async function twoMatch(req, res) {
     async function isTeam() {
         try {
             
-            const isBattingTeam = await FirstInning.findOne().sort({createdAt:-1}).exec();
-             const isSecondBattingTeam = await SecondInning.findOne({ BowlingTeamID: bowlingTeamID });
+            isBattingTeam = await FirstInning.findOne().sort({createdAt:-1}).exec();
+            const isSecondBattingTeam = await SecondInning.findOne().sort({createdAt:-1 }).exec();
 
             console.log("FirstInning :-",isBattingTeam);
 
-             
+            if(isBattingTeam == null){
+                console.log("error :-",error.message);
+                throw error
+            }
             
                 //const isSecondBattingTeam = await SecondInning.findOne({BattingTeamID:battingTeamID})
-                console.log("SecondInning :-",isSecondBattingTeam);
+            console.log("SecondInning :-",isSecondBattingTeam);
             }
         
         catch (error) {
@@ -45,7 +49,9 @@ async function twoMatch(req, res) {
         isTeam();
         
 
-        res.status(200).json({ message: "Two match data saved successfully" });
+        res.status(200).json({ message: "Two match data saved successfully",
+    
+        isBattingTeam});
     } catch (error) {
         console.log(error);
         res.status(500).json({ message: "Error saving two match data" });
