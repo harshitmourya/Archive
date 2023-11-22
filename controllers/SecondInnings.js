@@ -12,8 +12,6 @@ async function second(req,res){
             BowlingTeamID: req.body.BowlingTeamID,
             Player_ID_OnStrike: req.body.Player_ID_OnStrike,
             PlayerName_OnStrike: req.body.PlayerName_OnStrike,
-            //Player_ID_OfStrike: req.body.Player_ID_OfStrike,
-            //PlayerName_OfStrike: req.body.PlayerName_OfStrike,
             WicketStatus: req.body.WicketStatus,
             BattingTeamwicketCount: req.body.BattingTeamwicketCount,
             BallCountofBatsman: req.body.BallCountofBatsman,
@@ -24,6 +22,7 @@ async function second(req,res){
             batterRunCount: req.body.batterRunCount,
             teamRunCount: req.body.teamRunCount,
             wicketCount: req.body.wicketCount,
+            BowlerwicketCount:req.body.BowlerwicketCount,
             isFour: req.body.isFour,
             isSix: req.body.isSix,
             wideBall: req.body.wideBall,
@@ -74,6 +73,7 @@ async function second(req,res){
             ExistingInning.isSix = req.body.isSix;
             ExistingInning.isFour = req.body.isFour;    
             ExistingInning.wicketCount = req.body.wicketCount;
+            ExistingInning.BowlerwicketCount = req.body.BowlerwicketCount;
             ExistingInning.BattingTeamwicketCount= req.body.BattingTeamwicketCount;
             ExistingInning.BallCountofBatsman = req.body.BallCountofBatsman;
             ExistingInning.BallCountofBowler = req.body.BallCountofBowler;
@@ -94,8 +94,6 @@ async function second(req,res){
                 BowlingTeamID: req.body.BowlingTeamID,
                 Player_ID_OnStrike: req.body.Player_ID_OnStrike,
                 PlayerName_OnStrike: req.body.PlayerName_OnStrike,
-                //Player_ID_OfStrike: req.body.Player_ID_OfStrike,
-                //PlayerName_OfStrike: req.body.PlayerName_OfStrike,
                 WicketStatus: req.body.WicketStatus,
                 BattingTeamwicketCount: req.body.BattingTeamwicketCount,
                 BallCountofBatsman: req.body.BallCountofBatsman,
@@ -106,6 +104,7 @@ async function second(req,res){
                 batterRunCount: req.body.batterRunCount,
                 teamRunCount: req.body.teamRunCount,
                 wicketCount: req.body.wicketCount,
+                BowlerwicketCount: req.body.BowlerwicketCount,
                 isFour: req.body.isFour,
                 isSix: req.body.isSix,
                 wideBall: req.body.wideBall,

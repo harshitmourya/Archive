@@ -21,7 +21,7 @@ async function first(req, res) {
             batterRunCount: req.body.batterRunCount,
             teamRunCount:req.body.teamRunCount,
             wicketCount: req.body.wicketCount,
-            batterRunCount: req.body.batterRunCount,
+            BowlerwicketCount: req.body.BowlerwicketCount,
             isFour: req.body.isFour,
             isSix: req.body.isSix,
             wideBall: req.body.wideBall,
@@ -66,6 +66,7 @@ async function first(req, res) {
             existingInning.BattingTeamwicketCount= req.body.BattingTeamwicketCount; 
             existingInning.BallCountofBatsman = req.body.BallCountofBatsman;
             existingInning.BallCountofBowler = req.body.BallCountofBowler;
+            existingInning.BowlerwicketCount = req.body.BowlerwicketCount;
             existingInning.wideBall = req.body.wideBall;
             existingInning.NOBall = req.body.NOBall;
             existingInning.teamOverCount = req.body.teamOverCount;
