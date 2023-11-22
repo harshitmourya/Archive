@@ -56,7 +56,7 @@ const allsecondschema = new mongoose.Schema({
         ref:"PlayerOnGround",
     },
     BowlerwicketCount:{
-        type:String,
+        type:Number,
         required:true
     },
 

@@ -28,7 +28,7 @@ async function twoMatch(req, res) {
 
             isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
 
-            if (!isBattingTeam) {
+            if (isBattingTeam) {
 
                 // checking the team overCount is end or not
                 const teamOverLimit = 50;
