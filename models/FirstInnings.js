@@ -21,11 +21,7 @@ const allFirstschema = new mongoose.Schema({
         required: true,
         ref:"PlayerOnGround"
     },
-    // PlayerNameOnBatting:{
-    //     type: String,
-    //     required:true,
-    //     ref:"PlayerOnGround"
-    // },
+    
     WicketStatus:{
         type:Boolean,
         required:true,
@@ -66,6 +62,10 @@ const allFirstschema = new mongoose.Schema({
         required:true
     },
     wicketCount:{
+        type:Number,
+        required:true
+    },
+    BowlerwicketCount:{
         type:Number,
         required:true
     },

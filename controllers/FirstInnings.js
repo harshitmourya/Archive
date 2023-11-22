@@ -11,8 +11,6 @@ async function first(req, res) {
             BowlingTeamID: req.body.BowlingTeamID,
             Player_ID_OnStrike: req.body.Player_ID_OnStrike,
             PlayerName_OnStrike: req.body.PlayerName_OnStrike,
-            //Player_ID_OfStrike: req.body.Player_ID_OfStrike,
-            //PlayerName_OfStrike: req.body.PlayerName_OfStrike,
             WicketStatus: req.body.WicketStatus,
             BattingTeamwicketCount: req.body.BattingTeamwicketCount,
             BallCountofBatsman: req.body.BallCountofBatsman,
@@ -23,6 +21,7 @@ async function first(req, res) {
             batterRunCount: req.body.batterRunCount,
             teamRunCount:req.body.teamRunCount,
             wicketCount: req.body.wicketCount,
+            batterRunCount: req.body.batterRunCount,
             isFour: req.body.isFour,
             isSix: req.body.isSix,
             wideBall: req.body.wideBall,
@@ -33,17 +32,7 @@ async function first(req, res) {
         });
     
 
-        // Find or create the player and other details here...
-        // const BatsmanOnStrikeID = await PlayerOnGround.findOne({ playerID: Player_ID_OnStrike });
-        // const BatsmanNonStrikeID = await PlayerOnGround.findOne({ playerID: Player_ID_OfStrike });
-
-        // const Batsman1TeamId = await PlayerOnGround.findOne({ teamID: BattingTeamID });
-        // const Batsman2TeamID = await PlayerOnGround.findOne({ teamID: BattingTeamID });
-
-
-        // const bowleridTeam = await PlayerOnGround.findOne({ teamID: BowlingTeamID })
-        // const bowlerID = await PlayerOnGround.findOne({ playerID: Player_IDonBowling });
-
+        
 
 
         // Check if the inning already exists
@@ -59,9 +48,7 @@ async function first(req, res) {
         if (existingInning) {
             // Updating players detail
             existingInning.Player_ID_OnStrike = req.body.Player_ID_OnStrike;
-           // existingInning.Player_ID_OfStrike = req.body.Player_ID_OfStrike;
             existingInning.PlayerName_OnStrike = req.body.PlayerName_OnStrike;
-            //existingInning.PlayerName_OfStrike = req.body.PlayerName_OfStrike;
             existingInning.BattingTeamID = req.body.BattingTeamID;
             existingInning.BowlingTeamID = req.body.BowlingTeamID;
             existingInning.BowlingTeamName = req.body.BowlingTeamName;
@@ -69,11 +56,13 @@ async function first(req, res) {
             existingInning.PlayerNameOnBowling = req.body.PlayerNameOnBowling;
 
             // Updating other fields also
+            existingInning.WicketStatus = req.body.WicketStatus,
             existingInning.batterRunCount= req.body.batterRunCount,
             existingInning.teamRunCount= req.body.teamRunCount,
             existingInning.isSix = req.body.isSix;
             existingInning.isFour = req.body.isFour;
             existingInning.wicketCount = req.body.wicketCount;
+            existingInning.batterRunCount= req.body.batterRunCount
             existingInning.BattingTeamwicketCount= req.body.BattingTeamwicketCount; 
             existingInning.BallCountofBatsman = req.body.BallCountofBatsman;
             existingInning.BallCountofBowler = req.body.BallCountofBowler;
@@ -91,8 +80,6 @@ async function first(req, res) {
                 BowlingTeamID: req.body.BowlingTeamID,
                 Player_ID_OnStrike: req.body.Player_ID_OnStrike,
                 PlayerName_OnStrike: req.body.PlayerName_OnStrike,
-                //Player_ID_OfStrike: req.body.Player_ID_OfStrike,
-                //PlayerName_OfStrike: req.body.PlayerName_OfStrike,
                 WicketStatus: req.body.WicketStatus,
                 BattingTeamwicketCount: req.body.BattingTeamwicketCount,
                 BallCountofBatsman: req.body.BallCountofBatsman,
@@ -103,6 +90,7 @@ async function first(req, res) {
                 batterRunCount: req.body.batterRunCount,
                 teamRunCount:req.body.teamRunCount,
                 wicketCount: req.body.wicketCount,
+                BowlerwicketCount:req.body.BowlerwicketCount,
                 isFour: req.body.isFour,
                 isSix: req.body.isSix,
                 wideBall: req.body.wideBall,
