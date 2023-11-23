@@ -2,49 +2,40 @@ const matchDetail = require("../models/matchDetail");
 const MatchDetail = require("../models/matchDetail");
 const TeamDetail = require("../models/teamDetail");
 
-
-async function saveMatchDetails(req,res){
+async function saveMatchDetails(req, res) {
+    try {
         const matchdata = new matchDetail({
-            team1_id:req.body.team1_id,
-            team1Name:req.body.team1Name,
-            team2_id:req.body.team2_id,
-            team2Name:req.body.team2Name,
-            totalOver:req.body.totalOver,
-            TosswinningTeamId:req.body.TosswinningTeamId,
-            choose:req.body.choose
-        })
+            team1_id: req.body.team1_id,
+            team1Name: req.body.team1Name,
+            team2_id: req.body.team2_id,
+            team2Name: req.body.team2Name,
+            totalOver: req.body.totalOver,
+            TosswinningTeamId: req.body.TosswinningTeamId,
+            choose: req.body.choose
+        });
 
+        console.log("New matchdata: ", matchdata);
+        console.log("Team1_id: ", req.body.team1_id);
+        console.log("Team2_id: ", req.body.team2_id);
 
-        console.log("New matchdata: ", matchdata)
-  console.log("Team1_id: ", req.body.team1_id);
-  console.log("Team2_id: ", req.body.team2_id);
-  var team1_id = req.body.team1_id;
-  var team2_id = req.body.team2_id;
-  var team1Name = req.body.team1Name;
-  var team2Name = req.body.team2Name;
-
-
-        async function isExistTeam(req,res){
+        async function isExistTeam() {
             try {
-                const isteam1 = await TeamDetail.findOne({_id:team1_id});
-                const isteam2 = await TeamDetail.findOne({_id:team2_id});
+                const isteam1 = await TeamDetail.findOne({ _id: req.body.team1_id });
+                const isteam2 = await TeamDetail.findOne({ _id: req.body.team2_id });
 
-
-                
-                console.log("team1ID :-",isteam1);
+                console.log("team1ID :-", isteam1);
                 console.log("team2ID :-", isteam2);
 
-                
-
             } catch (error) {
-                console.log("Team Not found",error.message)
+                console.log("Team Not found", error.message);
             }
 
             const ExistingMatch = await MatchDetail.findOne({
-                team1_id : req.body.team1_id,
-                team2_id : req.body.team2_id
-            })
-               if(ExistingMatch){
+                team1_id: req.body.team1_id,
+                team2_id: req.body.team2_id
+            });
+
+            if (ExistingMatch) {
                 ExistingMatch.team1_id = req.body.team1_id;
                 ExistingMatch.team2_id = req.body.team2_id;
                 ExistingMatch.team1Name = req.body.team1Name;
@@ -55,30 +46,31 @@ async function saveMatchDetails(req,res){
 
                 await ExistingMatch.save();
 
-               }else{
+            } else {
                 const secondExist = await new MatchDetail({
-                    team1_id:req.body.team1_id,
-                    team1Name:req.body.team1Name,
-                    team2_id:req.body.team2_id,
-                    team2Name:req.body.team2Name,
-                    totalOver:req.body.totalOver,
-                    TosswinningTeamId:req.body.TosswinningTeamId,
-                    choose:req.body.choose
+                    team1_id: req.body.team1_id,
+                    team1Name: req.body.team1Name,
+                    team2_id: req.body.team2_id,
+                    team2Name: req.body.team2Name,
+                    totalOver: req.body.totalOver,
+                    TosswinningTeamId: req.body.TosswinningTeamId,
+                    choose: req.body.choose
+                });
 
-                })
                 await secondExist.save();
-               }
-               res.status(200).json({message:"New MatchDetail data saved successfully"})
-            
+            }
+
+            res.status(200).json({ message: "MatchDetail data saved successfully" });
         }
 
-        await isExistTeam()
-        res.status(200).json({message:"Data saved successfully"})
-
+        await isExistTeam();
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Error saving MatchDetail data" });
+    }
 }
 
 module.exports = saveMatchDetails;
-
 
  // const matchdetail = new MatchDetail(req.body);
     // var msg = "", win, loose, team1, team2;
