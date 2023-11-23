@@ -38,7 +38,7 @@ router.route("/onGround").post(savePlayerOnGroundDetails);
 router.route("/first").post(first);
 router.route("/second").post(second);
 router.route("/twoMatch").post(twoMatch)
-router.route("/deleteAllPlayer").post(deleteAllPlayer)
+router.route("/deleteAllPlayer").delete(deleteAllPlayer)
 
 
 module.exports = router;
