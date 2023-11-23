@@ -4,7 +4,7 @@ const TeamDetail = require("../models/teamDetail");
 
 
 async function saveMatchDetails(req,res){
-        const matchdata = await matchDetail({
+        const matchdata = new matchDetail({
             team1_id:req.body.team1_id,
             team1Name:req.body.team1Name,
             team2_id:req.body.team2_id,
@@ -40,7 +40,7 @@ async function saveMatchDetails(req,res){
                 console.log("Team Not found",error.message)
             }
 
-            const ExistingMatch = await TeamDetail.findOne({
+            const ExistingMatch = await MatchDetail.findOne({
                 team1_id : req.body.team1_id,
                 team2_id : req.body.team2_id
             })
@@ -55,8 +55,21 @@ async function saveMatchDetails(req,res){
 
                 await ExistingMatch.save();
 
+               }else{
+                const secondExist = await new MatchDetail({
+                    team1_id:req.body.team1_id,
+                    team1Name:req.body.team1Name,
+                    team2_id:req.body.team2_id,
+                    team2Name:req.body.team2Name,
+                    totalOver:req.body.totalOver,
+                    TosswinningTeamId:req.body.TosswinningTeamId,
+                    choose:req.body.choose
+
+                })
+                await secondExist.save();
                }
-            // match = await matchdata.save()
+               res.status(200).json({message:"New MatchDetail data saved successfully"})
+            
         }
 
         await isExistTeam()
