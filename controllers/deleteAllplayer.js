@@ -1,6 +1,6 @@
 const playerDetail = require('../models/playerDetail');
 
-async function deleteAllPlayer(){
+async function deleteAllPlayer(req,res){
     try {
         await playerDetail.deleteMany({});
         res.status(200).json({ message: 'All players deleted successfully' });
