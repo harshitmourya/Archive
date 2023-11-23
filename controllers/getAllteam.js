@@ -4,7 +4,7 @@ const teamDetail = require("../models/teamDetail");
 const getAllteam = async (req, res) => {
     const teamAll = await teamDetail.find();
     console.log(teamAll);
-    res.status(200).json(getAllteam);
+    res.status(200).json(teamAll);
 }
 
 
