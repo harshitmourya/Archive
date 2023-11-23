@@ -19,15 +19,13 @@ async function saveMatchDetails(req, res) {
 
         async function isExistTeam() {
             try {
-                const isteam1 = await matchDetail.findOne({ _id: req.body.team1_id });
-                const isteam2 = await matchDetail.findOne({ _id: req.body.team2_id });
+                const isteam1 = await TeamDetail.findOne({ _id: req.body.team1_id });
+                const isteam2 = await TeamDetail.findOne({ _id: req.body.team2_id });
 
                 console.log("team1ID :-", isteam1);
                 console.log("team2ID :-", isteam2);
 
-                if (!isteam1 || !isteam2) {
-                    return res.status(400).json({ message: "One or both teams not found" });
-                }
+              
             } catch (error) {
                 console.log("Error finding teams:", error.message);
                 return res.status(500).json({ message: "Internal Server Error" });
