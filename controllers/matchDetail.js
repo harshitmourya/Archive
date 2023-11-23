@@ -34,11 +34,29 @@ async function saveMatchDetails(req,res){
                 console.log("team1ID :-",isteam1);
                 console.log("team2ID :-", isteam2);
 
+                
+
             } catch (error) {
                 console.log("Team Not found",error.message)
             }
 
-            match = await matchdata.save()
+            const ExistingMatch = await TeamDetail.findOne({
+                team1_id : req.body.team1_id,
+                team2_id : req.body.team2_id
+            })
+               if(ExistingMatch){
+                ExistingMatch.team1_id = req.body.team1_id;
+                ExistingMatch.team2_id = req.body.team2_id;
+                ExistingMatch.team1Name = req.body.team1Name;
+                ExistingMatch.team2Name = req.body.team2Name;
+                ExistingMatch.TosswinningTeamId = req.body.TosswinningTeamId;
+                ExistingMatch.totalOver = req.body.totalOver;
+                ExistingMatch.choose = req.body.choose;
+
+                await ExistingMatch.save();
+
+               }
+            // match = await matchdata.save()
         }
 
         await isExistTeam()
