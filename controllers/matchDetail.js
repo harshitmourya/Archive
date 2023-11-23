@@ -20,8 +20,8 @@ async function saveMatchDetails(req, res) {
 
         async function isExistTeam() {
             try {
-                const isteam1 = await TeamDetail.findOne({ _id:team1_id });
-                const isteam2 = await TeamDetail.findOne({ _id:team2_id });
+                const isteam1 = await TeamDetail.findOne({ _id:req.body.team1_id });
+                const isteam2 = await TeamDetail.findOne({ _id:req.body.team2_id });
 
                 console.log("team1ID :-", isteam1);
                 console.log("team2ID :-", isteam2);
