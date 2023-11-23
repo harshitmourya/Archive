@@ -69,7 +69,7 @@ async function saveMatchDetails(req, res) {
 
         await isExistTeam();
     } catch (error) {
-        console.log(error);
+        console.log("error :-",error.message);
         res.status(500).json({ message: "Team not found" });
     }
 }
