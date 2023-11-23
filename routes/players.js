@@ -26,7 +26,7 @@ const getAllteam = require("../controllers/getAllteam");
 router.route("/").get(getAllPlayers);
 router.route("/team/:teamID").get(teamPlayers);
 router.route("/:_id").get(runningMatch);
-router.route("/getAllteam").get(getAllteam)
+router.route("/all/getAllteam").get(getAllteam)
 router.route("/newPlayer").post(savePlayerDetails);
 router.route("/registration").post(saveUserDetails);
 router.route("/team").post(saveTeamDetail);
