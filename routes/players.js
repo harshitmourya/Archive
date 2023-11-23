@@ -20,11 +20,13 @@ const twoMatch  =require("../controllers/twoMatchData");
 const runningMatch = require("../controllers/getMatchRunningStatus");
 const second = require("../controllers/SecondInnings");
 const deleteAllPlayer = require("../controllers/deleteAllplayer");
+const getAllteam = require("../controllers/getAllteams");
 
 
 router.route("/").get(getAllPlayers);
 router.route("/team/:teamID").get(teamPlayers);
 router.route("/:_id").get(runningMatch);
+router.route("/getAllteam").get(getAllteam)
 router.route("/newPlayer").post(savePlayerDetails);
 router.route("/registration").post(saveUserDetails);
 router.route("/team").post(saveTeamDetail);
