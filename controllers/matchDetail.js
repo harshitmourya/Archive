@@ -66,7 +66,7 @@ async function saveMatchDetails(req, res) {
         await isExistTeam();
     } catch (error) {
         console.log(error);
-        res.status(500).json({ message: "Error saving MatchDetail data" });
+        res.status(500).json({ message: "Team not found" });
     }
 }
 
