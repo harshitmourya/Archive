@@ -1,7 +1,5 @@
 const teamDetail = require("../models/teamDetail");
 
-
-
 async function getAllteam(req,res){
     try {
         const teamAll = await teamDetail.find();
@@ -11,4 +9,5 @@ async function getAllteam(req,res){
         console.log("error",error.message)
     } 
 }
+getAllteam()
 module.exports = getAllteam
