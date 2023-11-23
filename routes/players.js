@@ -20,7 +20,7 @@ const twoMatch  =require("../controllers/twoMatchData");
 const runningMatch = require("../controllers/getMatchRunningStatus");
 const second = require("../controllers/SecondInnings");
 const deleteAllPlayer = require("../controllers/deleteAllplayer");
-const getAllteam = require("../controllers/getAllteams");
+const getAllteam = require("../controllers/getAllteam");
 
 
 router.route("/").get(getAllPlayers);
