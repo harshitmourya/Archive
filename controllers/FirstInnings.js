@@ -2,13 +2,14 @@ const FirstInning = require('../models/FirstInnings');
 const PlayerOnGround = require('../models/playerOnGroundDetail');
 
 
-
+ var BattingTeamID= '';
+ var BowlingTeamID = ''
 async function first(req, res) {
     try {
          const isteam1 = await PlayerOnGround.findone({teamID:BattingTeamID});
          const isteam2 = await PlayerOnGround.findOne({teamID:BowlingTeamID});
 
-         
+
         if(!isteam1 || !isteam2) {
             return res.status(400).json({ message: "One or both teams not found" });
         }
