@@ -2,17 +2,20 @@ const FirstInning = require('../models/FirstInnings');
 const PlayerOnGround = require('../models/playerOnGroundDetail');
 
 
- var BattingTeamID= '';
- var BowlingTeamID = ''
+
 async function first(req, res) {
     try {
-         const isteam1 = await PlayerOnGround.findone({teamID:BattingTeamID});
-         const isteam2 = await PlayerOnGround.findOne({teamID:BowlingTeamID});
+         // Check if BattingTeamID, BowlingTeamID, and Player_ID_OnStrike are in the database
+         const isBattingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BattingTeamID });
+         const isBowlingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BowlingTeamID });
+         const isPlayerOnStrikeExist = await PlayerOnGround.findOne({ playerID: req.body.Player_ID_OnStrike });
+         const isPlayerOnBowlingExist = await PlayerOnGround.findOne({playerID:req.body.Player_IDonBowling})
+ 
+         if (!isBattingTeamExist || !isBowlingTeamExist || !isPlayerOnStrikeExist || isPlayerOnBowlingExist) {
+             return res.status(400).json({ message: "One or more teams/players not found" });
+         }
+ 
 
-
-        if(!isteam1 || !isteam2) {
-            return res.status(400).json({ message: "One or both teams not found" });
-        }
         // const api1 = new FirstInning({
         //     BattingTeamName: req.body.BattingTeamName,
         //     BattingTeamID: req.body.BattingTeamID,
