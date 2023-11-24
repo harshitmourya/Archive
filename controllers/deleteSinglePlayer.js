@@ -1,7 +1,7 @@
 const playerDetail =require("../models/playerDetail");
 
 async function DeleteSinglePlayer(req,res){
-    const {playerId} = req.params.id;
+    const {playerId} = req.params;
     console.log(playerId);
     try {
         const deletePlayer = await playerDetail.findByIDAndDelete(playerId);
