@@ -6,14 +6,14 @@ const PlayerOnGround = require('../models/playerOnGroundDetail');
 async function first(req, res) {
     try {
          // Check if BattingTeamID, BowlingTeamID, and Player_ID_OnStrike are in the database
-         const isBattingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BattingTeamID });
-         const isBowlingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BowlingTeamID });
-         const isPlayerOnStrikeExist = await PlayerOnGround.findOne({ playerID: req.body.Player_ID_OnStrike });
-         const isPlayerOnBowlingExist = await PlayerOnGround.findOne({playerID:req.body.Player_IDonBowling})
+        //  const isBattingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BattingTeamID });
+        //  const isBowlingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BowlingTeamID });
+        //  const isPlayerOnStrikeExist = await PlayerOnGround.findOne({ playerID: req.body.Player_ID_OnStrike });
+        //  const isPlayerOnBowlingExist = await PlayerOnGround.findOne({playerID:req.body.Player_IDonBowling})
  
-         if (!isBattingTeamExist || !isBowlingTeamExist || !isPlayerOnStrikeExist || isPlayerOnBowlingExist) {
-             return res.status(400).json({ message: "One or more teams/players not found" });
-         }else{
+        //  if (!isBattingTeamExist || !isBowlingTeamExist || !isPlayerOnStrikeExist || isPlayerOnBowlingExist) {
+        //      return res.status(400).json({ message: "One or more teams/players not found" });
+        //  }
             
 
         // const api1 = new FirstInning({
@@ -58,6 +58,10 @@ async function first(req, res) {
 
         if (existingInning) {
             // Updating players detail
+            const isBAtter = await PlayerOnGround.findOne({teamID:req.body.BattingTeamID});
+            if(!isBAtter){
+                return res.status(400).json({ message: "One or more teams/players not found" })
+            }
             existingInning.Player_ID_OnStrike = req.body.Player_ID_OnStrike;
             existingInning.PlayerName_OnStrike = req.body.PlayerName_OnStrike;
             existingInning.BattingTeamID = req.body.BattingTeamID;
@@ -118,7 +122,7 @@ async function first(req, res) {
     
 
         res.status(200).json({ message: 'Data saved successfully ' });
-    }
+    
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error saving data' });
