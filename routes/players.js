@@ -42,7 +42,7 @@ router.route("/first").post(first);
 router.route("/second").post(second);
 router.route("/twoMatch").post(twoMatch)
 router.route("/deleteAllPlayer").delete(deleteAllPlayer)
-router.route("/delete/:_id").delete(DeleteSinglePlayer)
+router.route("/delete/:DeleteSinglePlayer").delete(DeleteSinglePlayer)
 
 
 module.exports = router;
