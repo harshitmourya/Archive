@@ -5,31 +5,31 @@ const PlayerOnGround = require('../models/playerOnGroundDetail');
 
 async function first(req, res) {
     try {
-        const api1 = new FirstInning({
-            BattingTeamName: req.body.BattingTeamName,
-            BattingTeamID: req.body.BattingTeamID,
-            BowlingTeamID: req.body.BowlingTeamID,
-            Player_ID_OnStrike: req.body.Player_ID_OnStrike,
-            PlayerName_OnStrike: req.body.PlayerName_OnStrike,
-            WicketStatus: req.body.WicketStatus,
-            BattingTeamwicketCount: req.body.BattingTeamwicketCount,
-            BallCountofBatsman: req.body.BallCountofBatsman,
-            BowlingTeamName: req.body.BowlingTeamName,
-            Player_IDonBowling: req.body.Player_IDonBowling,
-            PlayerNameOnBowling: req.body.PlayerNameOnBowling,
-            BallCountofBowler: req.body.BallCountofBowler,
-            batterRunCount: req.body.batterRunCount,
-            teamRunCount:req.body.teamRunCount,
-            wicketCount: req.body.wicketCount,
-            BowlerwicketCount: req.body.BowlerwicketCount,
-            isFour: req.body.isFour,
-            isSix: req.body.isSix,
-            wideBall: req.body.wideBall,
-            NOBall: req.body.NOBall,
-            teamOverCount: req.body.teamOverCount,
-            MaidenOver: req.body.MaidenOver
+        // const api1 = new FirstInning({
+        //     BattingTeamName: req.body.BattingTeamName,
+        //     BattingTeamID: req.body.BattingTeamID,
+        //     BowlingTeamID: req.body.BowlingTeamID,
+        //     Player_ID_OnStrike: req.body.Player_ID_OnStrike,
+        //     PlayerName_OnStrike: req.body.PlayerName_OnStrike,
+        //     WicketStatus: req.body.WicketStatus,
+        //     BattingTeamwicketCount: req.body.BattingTeamwicketCount,
+        //     BallCountofBatsman: req.body.BallCountofBatsman,
+        //     BowlingTeamName: req.body.BowlingTeamName,
+        //     Player_IDonBowling: req.body.Player_IDonBowling,
+        //     PlayerNameOnBowling: req.body.PlayerNameOnBowling,
+        //     BallCountofBowler: req.body.BallCountofBowler,
+        //     batterRunCount: req.body.batterRunCount,
+        //     teamRunCount:req.body.teamRunCount,
+        //     wicketCount: req.body.wicketCount,
+        //     BowlerwicketCount: req.body.BowlerwicketCount,
+        //     isFour: req.body.isFour,
+        //     isSix: req.body.isSix,
+        //     wideBall: req.body.wideBall,
+        //     NOBall: req.body.NOBall,
+        //     teamOverCount: req.body.teamOverCount,
+        //     MaidenOver: req.body.MaidenOver
             
-        });
+        // });
     
 
         
