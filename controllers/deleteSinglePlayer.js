@@ -2,9 +2,9 @@ const playerDetail =require("../models/playerDetail");
 
 async function DeleteSinglePlayer(req,res){
     const {playerId} = req.params;
-    console.log(playerId);
+    console.log("Deleting Player",playerId);
     try {
-        const deletePlayer = await playerDetail.findByIdAndDelete(playerId);
+        const deletePlayer = await playerDetail.findByIdAndDelete(_id);
 
         if(!deletePlayer){
             res.status(404).json({message :"Id not found for the given playerID"})
