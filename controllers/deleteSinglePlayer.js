@@ -4,7 +4,7 @@ async function DeleteSinglePlayer(req,res){
     const {playerId} = req.params;
     console.log(playerId);
     try {
-        const deletePlayer = await playerDetail.findByIDAndDelete(playerId);
+        const deletePlayer = await playerDetail.findByIdAndDelete(playerId);
 
         if(!deletePlayer){
             res.status(404).json({message :"Id not found for the given playerID"})
