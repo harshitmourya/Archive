@@ -13,8 +13,8 @@ async function first(req, res) {
  
          if (!isBattingTeamExist || !isBowlingTeamExist || !isPlayerOnStrikeExist || isPlayerOnBowlingExist) {
              return res.status(400).json({ message: "One or more teams/players not found" });
-         }
- 
+         }else{
+            
 
         // const api1 = new FirstInning({
         //     BattingTeamName: req.body.BattingTeamName,
@@ -118,6 +118,7 @@ async function first(req, res) {
     
 
         res.status(200).json({ message: 'Data saved successfully ' });
+    }
     } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Error saving data' });
