@@ -42,14 +42,8 @@ async function first(req, res) {
             
         // });
     
-        const isBattingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BattingTeamID });
-        const isBowlingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BowlingTeamID });
-        const isPlayerOnStrikeExist = await PlayerOnGround.findOne({ playerID: req.body.Player_ID_OnStrike });
-        const isPlayerOnBowlingExist = await PlayerOnGround.findOne({playerID:req.body.Player_IDonBowling});
- 
-        if(!isBowlingTeamExist ||isBattingTeamExist || isPlayerOnBowlingExist|| isPlayerOnStrikeExist){
-            return res.status(400).json({ message: "One or more teams/players not found" })
-        }
+        
+       
         
 
 
@@ -94,6 +88,14 @@ async function first(req, res) {
             // Save the updated document
             await existingInning.save();
         } else {
+        const isBattingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BattingTeamID });
+        const isBowlingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BowlingTeamID });
+        const isPlayerOnStrikeExist = await PlayerOnGround.findOne({ playerID: req.body.Player_ID_OnStrike });
+        const isPlayerOnBowlingExist = await PlayerOnGround.findOne({playerID:req.body.Player_IDonBowling});
+ 
+        if(!isBowlingTeamExist ||isBattingTeamExist || isPlayerOnBowlingExist|| isPlayerOnStrikeExist){
+            return res.status(400).json({ message: "One or more teams/players not found" })
+        }
             const newlyInning = await new FirstInning({
 
 
