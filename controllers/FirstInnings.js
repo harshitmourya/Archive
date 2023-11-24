@@ -42,7 +42,14 @@ async function first(req, res) {
             
         // });
     
-
+        const isBattingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BattingTeamID });
+        const isBowlingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BowlingTeamID });
+        const isPlayerOnStrikeExist = await PlayerOnGround.findOne({ playerID: req.body.Player_ID_OnStrike });
+        const isPlayerOnBowlingExist = await PlayerOnGround.findOne({playerID:req.body.Player_IDonBowling});
+ 
+        if(!isBowlingTeamExist ||isBattingTeamExist || isPlayerOnBowlingExist|| isPlayerOnStrikeExist){
+            return res.status(400).json({ message: "One or more teams/players not found" })
+        }
         
 
 
@@ -58,14 +65,7 @@ async function first(req, res) {
 
         if (existingInning) {
             // Updating players detail
-            const isBattingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BattingTeamID });
-            const isBowlingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BowlingTeamID });
-            const isPlayerOnStrikeExist = await PlayerOnGround.findOne({ playerID: req.body.Player_ID_OnStrike });
-            const isPlayerOnBowlingExist = await PlayerOnGround.findOne({playerID:req.body.Player_IDonBowling})
-     
-            if(!isBowlingTeamExist ||isBattingTeamExist || isPlayerOnBowlingExist|| isPlayerOnStrikeExist){
-                return res.status(400).json({ message: "One or more teams/players not found" })
-            }
+           
             existingInning.Player_ID_OnStrike = req.body.Player_ID_OnStrike;
             existingInning.PlayerName_OnStrike = req.body.PlayerName_OnStrike;
             existingInning.BattingTeamID = req.body.BattingTeamID;
@@ -95,6 +95,8 @@ async function first(req, res) {
             await existingInning.save();
         } else {
             const newlyInning = await new FirstInning({
+
+
                 BattingTeamName: req.body.BattingTeamName,
                 BattingTeamID: req.body.BattingTeamID,
                 BowlingTeamID: req.body.BowlingTeamID,
