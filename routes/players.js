@@ -21,6 +21,7 @@ const runningMatch = require("../controllers/getMatchRunningStatus");
 const second = require("../controllers/SecondInnings");
 const deleteAllPlayer = require("../controllers/deleteAllplayer");
 const getAllteam = require("../controllers/getAllteam");
+const DeleteSinglePlayer = require("../controllers/deleteSinglePlayer");
 
 
 router.route("/").get(getAllPlayers);
@@ -41,6 +42,7 @@ router.route("/first").post(first);
 router.route("/second").post(second);
 router.route("/twoMatch").post(twoMatch)
 router.route("/deleteAllPlayer").delete(deleteAllPlayer)
+router.route("/delete/:_id").delete(DeleteSinglePlayer)
 
 
 module.exports = router;
