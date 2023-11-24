@@ -23,6 +23,7 @@ const deleteAllPlayer = require("../controllers/deleteAllplayer");
 const getAllteam = require("../controllers/getAllteam");
 const DeleteSinglePlayer = require("../controllers/deleteSinglePlayer");
 const AllteamDelete = require("../controllers/TeamDeleteAll");
+const SingleTeamDelete = require("../controllers/TeamSingleDelete");
 
 
 router.route("/").get(getAllPlayers);
@@ -44,6 +45,7 @@ router.route("/second").post(second);
 router.route("/twoMatch").post(twoMatch);
 router.route("/deleteAllPlayer").delete(deleteAllPlayer);
 router.route("/DeleteSinglePlayer/:playerId").delete(DeleteSinglePlayer);
-router.route("/AllteamDelete").delete(AllteamDelete)
+router.route("/AllteamDelete").delete(AllteamDelete);
+router.route("/SingleTeamDelete/:teamid").delete(SingleTeamDelete);
 
 module.exports = router;
