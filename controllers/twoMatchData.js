@@ -74,7 +74,7 @@ async function twoMatch(req, res) {
         catch (error) {
             console.log(error.message, " BattingTeam and BowlingTeam not found");
         }
-        res.status(200).send({ message: isBattingTeam })
+       
     }
 
     try {
