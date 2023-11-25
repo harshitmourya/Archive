@@ -25,8 +25,8 @@ async function twoMatch(req, res) {
             const isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
 
             if (isBattingTeam) {
-                const isteamOver = isBattingTeam.teamOverCount <= matchDetail.totalOver;
-                const isteamWicket = isBattingTeam.wicketCount <= matchDetail.team1TotalPlayers;
+                const isteamOver = isBattingTeam.teamOverCount >= matchDetail.totalOver;
+                const isteamWicket = isBattingTeam.wicketCount >= matchDetail.team1TotalPlayers;
 
                 if (isteamWicket || isteamOver) {
                     console.log('First Inning is Over');
@@ -39,8 +39,8 @@ async function twoMatch(req, res) {
                 }
             } else {
                 const isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
-                const isteamOver = isSecondBattingTeam.teamOverCount <= matchDetail.totalOver;
-                const isteamWicket = isSecondBattingTeam.wicketCount <= matchDetail.team2TotalPlayers;
+                const isteamOver = isSecondBattingTeam.teamOverCount >= matchDetail.totalOver;
+                const isteamWicket = isSecondBattingTeam.wicketCount >= matchDetail.team2TotalPlayers;
 
                 console.log("SecondInning:-", isSecondBattingTeam);
 
