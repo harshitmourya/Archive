@@ -40,11 +40,11 @@ async function twoMatch(req, res) {
                 console.log("overs are end", isteamOver)
 
                 // checking teamWicketCount is equal or greater than teamWicketlimit
-                const isteamWicket = isBattingTeam.WicketCount >= matchDetail.t;
+                const isteamWicket = isBattingTeam.WicketCount >= matchDetail.team1TotalPlayers;
                 console.log("all batsman are out", isteamWicket);
                 console.log("FirstInning",isBattingTeam)
 
-                if(teamOverLimit || teamWicketLimit){
+                if(isteamWicket || isteamOver){
                     console.log('First Inning is Over');
                     return true;
 
@@ -59,15 +59,15 @@ async function twoMatch(req, res) {
                 const isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
                 
                 //checking the team overCount is end or not
-                const teamOverLimit = 50;
-                const teamWicketLimit = 11;
+                // const teamOverLimit = 50;
+                // const teamWicketLimit = 11;
 
                 // checking teamOverCount is equal or greater than teamOverCount
-                const isteamOver = isSecondBattingTeam.teamOverCount >= teamOverLimit;
+                const isteamOver = isSecondBattingTeam.teamOverCount >= matchDetail.teamOver;
                 console.log("overs are end", isteamOver)
 
                 // checking teamWicketCount is equal or greater than teamWicketlimit
-                const isteamWicket = isSecondBattingTeam.WicketCount >= teamWicketLimit;
+                const isteamWicket = isSecondBattingTeam.WicketCount >= matchDetail.team2TotalPlayers;
                 console.log("all batsman are out", isteamWicket);
 
                 console.log("SecondInning:-",isSecondBattingTeam);
