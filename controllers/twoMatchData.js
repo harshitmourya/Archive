@@ -2,11 +2,8 @@ const FirstInning = require("../models/FirstInnings");
 const TwoMatchData = require("../models/saveMatchBTW2teams");
 const PlayerOnGround = require("../models/playerOnGroundDetail");
 const matchDetail = require("../models/matchDetail")
-
 const SecondInning = require("../models/SecondInnings");
 
-
-// ... (previous imports)
 
 async function twoMatch(req, res) {
     var battingTeamID = req.body.battingTeamID;
@@ -20,7 +17,7 @@ async function twoMatch(req, res) {
     console.log(twoTeamDetail);
     console.log("BattingTeam :-", battingTeamID);
     console.log("BowlingTeam :-", bowlingTeamID);
-
+ 
     async function isTeam() {
         try {
             let message = '';
@@ -28,8 +25,8 @@ async function twoMatch(req, res) {
             const isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
 
             if (isBattingTeam) {
-                const isteamOver = isBattingTeam.teamOverCount >= matchDetail.teamOver;
-                const isteamWicket = isBattingTeam.WicketCount >= matchDetail.team1TotalPlayers;
+                const isteamOver = isBattingTeam.teamOverCount >= matchDetail.totalOver;
+                const isteamWicket = isBattingTeam.wicketCount >= matchDetail.team1TotalPlayers;
 
                 if (isteamWicket || isteamOver) {
                     console.log('First Inning is Over');
@@ -42,8 +39,8 @@ async function twoMatch(req, res) {
                 }
             } else {
                 const isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
-                const isteamOver = isSecondBattingTeam.teamOverCount >= matchDetail.teamOver;
-                const isteamWicket = isSecondBattingTeam.WicketCount >= matchDetail.team2TotalPlayers;
+                const isteamOver = isSecondBattingTeam.teamOverCount >= matchDetail.totalOver;
+                const isteamWicket = isSecondBattingTeam.wicketCount >= matchDetail.team2TotalPlayers;
 
                 console.log("SecondInning:-", isSecondBattingTeam);
 
