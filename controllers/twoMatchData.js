@@ -32,14 +32,15 @@ async function twoMatch(req, res) {
                 const isteamOver = isBattingTeam.teamOverCount >= matchDetail.teamOver;
                 // checking teamWicketCount is equal or greater than teamWicketlimit
                 const isteamWicket = isBattingTeam.WicketCount >= matchDetail.team1TotalPlayers;
-                 console.log("FirstInning",isBattingTeam)
-
+                
                 if(isteamWicket || isteamOver){
                     console.log('First Inning is Over');
+                    res.status(200).json({message:"first inning is Over"})
                     return true;
 
                 }else {
                     console.log("first Inning is running");
+                    res.status(200).json({message: isBattingTeam})
                     return false;
                 }
 
@@ -57,12 +58,12 @@ async function twoMatch(req, res) {
 
                 if(isteamOver || isteamWicket){
                     console.log('Second Inning is Over');
-                    message = "Second Inning is Over";
+                    res.status(200).json({message: 'Second Inning is Over'});
                     return true;
 
                 }else {
                     console.log("Second Inning is running");
-                    message ="Second Inning is running";
+                   res.status(200).json({message: isSecondBattingTeam});
                     return false;
                 }
 
