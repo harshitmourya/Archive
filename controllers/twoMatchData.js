@@ -72,7 +72,7 @@ async function twoMatch(req, res) {
         res.status(200).json({
             message: "Two match data saved successfully",
             inningStatus: inningEnd ? 'Inning Over' : 'Inning Running',
-            data: message, // Include the data in the response
+             // Include the data in the response
         });
     } catch (error) {
         console.log("Error saving two match data:", error);
