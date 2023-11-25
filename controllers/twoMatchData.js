@@ -23,6 +23,7 @@ async function twoMatch(req, res) {
 
     async function isTeam() {
         try {
+            let message = '';
 
            const  isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
 
@@ -35,12 +36,12 @@ async function twoMatch(req, res) {
                 
                 if(isteamWicket || isteamOver){
                     console.log('First Inning is Over');
-                    res.status(200).json({message:"first inning is Over"})
+                    message = 'First Inning is Over';
                     return true;
 
                 }else {
                     console.log("first Inning is running");
-                    res.status(200).json({message: isBattingTeam})
+                    message =  isBattingTeam
                     return false;
                 }
 
@@ -58,12 +59,12 @@ async function twoMatch(req, res) {
 
                 if(isteamOver || isteamWicket){
                     console.log('Second Inning is Over');
-                    res.status(200).json({message: 'Second Inning is Over'});
+                    message = 'Second Inning is Over';
                     return true;
 
                 }else {
                     console.log("Second Inning is running");
-                   res.status(200).json({message: isSecondBattingTeam});
+                   message = isSecondBattingTeam;
                     return false;
                 }
 
