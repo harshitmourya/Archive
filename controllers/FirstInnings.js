@@ -93,7 +93,7 @@ async function first(req, res) {
         const isPlayerOnStrikeExist = await PlayerOnGround.findOne({ playerID: req.body.Player_ID_OnStrike });
         const isPlayerOnBowlingExist = await PlayerOnGround.findOne({playerID:req.body.Player_IDonBowling});
  
-        if(!isBowlingTeamExist ||isBattingTeamExist || isPlayerOnBowlingExist|| isPlayerOnStrikeExist){
+        if(isBowlingTeamExist ||isBattingTeamExist || isPlayerOnBowlingExist|| isPlayerOnStrikeExist){
             return res.status(400).json({ message: "One or more teams/players not found" })
         }
             const newlyInning = await new FirstInning({
