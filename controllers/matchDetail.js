@@ -7,8 +7,10 @@ async function saveMatchDetails(req, res) {
         const matchdata = new matchDetail({
             team1_id: req.body.team1_id,
             team1Name: req.body.team1Name,
+            team1TotalPlayers:req.body.team1TotalPlayers,
             team2_id: req.body.team2_id,
             team2Name: req.body.team2Name,
+            team2TotalPlayers:req.body.team2TotalPlayers,
             totalOver: req.body.totalOver,
             TosswinningTeamId: req.body.TosswinningTeamId,
             choose: req.body.choose
@@ -17,6 +19,9 @@ async function saveMatchDetails(req, res) {
         console.log("New matchdata: ", matchdata);
         console.log("Team1_id: ", req.body.team1_id);
         console.log("Team2_id: ", req.body.team2_id);
+        console.log("team1players :-" ,team1TotalPlayers);
+        console.log("team2players :-" ,team2TotalPlayers);
+
 
         async function isExistTeam() {
             try {
@@ -43,8 +48,10 @@ async function saveMatchDetails(req, res) {
                 ExistingMatch.team1_id = req.body.team1_id;
                 ExistingMatch.team2_id = req.body.team2_id;
                 ExistingMatch.team1Name = req.body.team1Name;
+                ExistingMatch.team1TotalPlayers=req.body.team1TotalPlayers;   
                 ExistingMatch.team2Name = req.body.team2Name;
                 ExistingMatch.TosswinningTeamId = req.body.TosswinningTeamId;
+                ExistingMatch.team2TotalPlayers = req.body.team2TotalPlayers;
                 ExistingMatch.totalOver = req.body.totalOver;
                 ExistingMatch.choose = req.body.choose;
 
@@ -54,8 +61,10 @@ async function saveMatchDetails(req, res) {
                 const secondExist = await new MatchDetail({
                     team1_id: req.body.team1_id,
                     team1Name: req.body.team1Name,
+                    team1TotalPlayers:req.body.team1TotalPlayers,
                     team2_id: req.body.team2_id,
                     team2Name: req.body.team2Name,
+                    team1TotalPlayers:req.body.team1TotalPlayers,
                     totalOver: req.body.totalOver,
                     TosswinningTeamId: req.body.TosswinningTeamId,
                     choose: req.body.choose
