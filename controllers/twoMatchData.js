@@ -6,6 +6,7 @@ const matchDetail = require("../models/matchDetail")
 const SecondInning = require("../models/SecondInnings");
 
 
+// ... (previous imports)
 
 async function twoMatch(req, res) {
     var battingTeamID = req.body.battingTeamID;
@@ -20,86 +21,66 @@ async function twoMatch(req, res) {
     console.log("BattingTeam :-", battingTeamID);
     console.log("BowlingTeam :-", bowlingTeamID);
 
-
     async function isTeam() {
         try {
             let message = '';
 
-           const  isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
+            const isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
 
             if (isBattingTeam) {
-
-                // checking teamOverCount is equal or greater than teamOverCount
                 const isteamOver = isBattingTeam.teamOverCount >= matchDetail.teamOver;
-                // checking teamWicketCount is equal or greater than teamWicketlimit
                 const isteamWicket = isBattingTeam.WicketCount >= matchDetail.team1TotalPlayers;
-                
-                if(isteamWicket || isteamOver){
+
+                if (isteamWicket || isteamOver) {
                     console.log('First Inning is Over');
                     message = 'First Inning is Over';
                     return true;
-
-                }else {
+                } else {
                     console.log("first Inning is running");
-                    message =  isBattingTeam
+                    message = isBattingTeam;
                     return false;
                 }
-
-
             } else {
-
                 const isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
-                
-                // checking teamOverCount is equal or greater than teamOverCount
                 const isteamOver = isSecondBattingTeam.teamOverCount >= matchDetail.teamOver;
-                // checking teamWicketCount is equal or greater than teamWicketlimit
                 const isteamWicket = isSecondBattingTeam.WicketCount >= matchDetail.team2TotalPlayers;
 
-                console.log("SecondInning:-",isSecondBattingTeam);
+                console.log("SecondInning:-", isSecondBattingTeam);
 
-                if(isteamOver || isteamWicket){
+                if (isteamOver || isteamWicket) {
                     console.log('Second Inning is Over');
                     message = 'Second Inning is Over';
                     return true;
-
-                }else {
+                } else {
                     console.log("Second Inning is running");
-                   message = isSecondBattingTeam;
+                    message = isSecondBattingTeam;
                     return false;
                 }
-
-               
             }
-        }
-
-        catch (error) {
+        } catch (error) {
             console.log(error.message, " BattingTeam and BowlingTeam not found");
+            return false; // Return false in case of an error
         }
-       
     }
 
     try {
-
         const allTeamData = await twoTeamDetail.save();
-        console.log(allTeamData);
+        console.log("Saved Data:", allTeamData);
 
-      const inningEnd =   await isTeam();
-
+        const inningEnd = await isTeam();
 
         res.status(200).json({
             message: "Two match data saved successfully",
             inningStatus: inningEnd ? 'Inning Over' : 'Inning Running',
-
+            data: message, // Include the data in the response
         });
     } catch (error) {
-        console.log(error);
+        console.log("Error saving two match data:", error);
         res.status(500).json({ message: "Error saving two match data" });
     }
 }
 
 module.exports = twoMatch;
-
-
 
 
 
