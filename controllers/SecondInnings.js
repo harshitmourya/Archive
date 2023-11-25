@@ -7,35 +7,35 @@ async function second(req,res){
     try {
         console.log("Inside Try");
         const api2 = new SecondInning({
-            BattingTeamName: req.body.BattingTeamName,
-            BattingTeamID: req.body.BattingTeamID,
-            BowlingTeamID: req.body.BowlingTeamID,
-            Player_ID_OnStrike: req.body.Player_ID_OnStrike,
-            PlayerName_OnStrike: req.body.PlayerName_OnStrike,
-            WicketStatus: req.body.WicketStatus,
-            BattingTeamwicketCount: req.body.BattingTeamwicketCount,
-            BallCountofBatsman: req.body.BallCountofBatsman,
-            BowlingTeamName: req.body.BowlingTeamName,
-            Player_IDonBowling: req.body.Player_IDonBowling,
-            PlayerNameOnBowling: req.body.PlayerNameOnBowling,
-            BallCountofBowler: req.body.BallCountofBowler,
-            batterRunCount: req.body.batterRunCount,
-            teamRunCount: req.body.teamRunCount,
-            wicketCount: req.body.wicketCount,
-            BowlerwicketCount:req.body.BowlerwicketCount,
-            isFour: req.body.isFour,
-            isSix: req.body.isSix,
-            wideBall: req.body.wideBall,
-            NOBall: req.body.NOBall,
-            teamOverCount: req.body.teamOverCount,
-            MaidenOver: req.body.MaidenOver   
+            // BattingTeamName: req.body.BattingTeamName,
+            // BattingTeamID: req.body.BattingTeamID,
+            // BowlingTeamID: req.body.BowlingTeamID,
+            // Player_ID_OnStrike: req.body.Player_ID_OnStrike,
+            // PlayerName_OnStrike: req.body.PlayerName_OnStrike,
+            // WicketStatus: req.body.WicketStatus,
+            // BattingTeamwicketCount: req.body.BattingTeamwicketCount,
+            // BallCountofBatsman: req.body.BallCountofBatsman,
+            // BowlingTeamName: req.body.BowlingTeamName,
+            // Player_IDonBowling: req.body.Player_IDonBowling,
+            // PlayerNameOnBowling: req.body.PlayerNameOnBowling,
+            // BallCountofBowler: req.body.BallCountofBowler,
+            // batterRunCount: req.body.batterRunCount,
+            // teamRunCount: req.body.teamRunCount,
+            // wicketCount: req.body.wicketCount,
+            // BowlerwicketCount:req.body.BowlerwicketCount,
+            // isFour: req.body.isFour,
+            // isSix: req.body.isSix,
+            // wideBall: req.body.wideBall,
+            // NOBall: req.body.NOBall,
+            // teamOverCount: req.body.teamOverCount,
+            // MaidenOver: req.body.MaidenOver   
         }); 
         
-        console.log("Hello, Harshit");
-        console.log("Object: ", api2);
+        // console.log("Hello, Harshit");
+        // console.log("Object: ", api2);
 
-        console.log("battingteam: ", api2.BattingTeamID);
-        console.log("bowlingteam: ", api2.BowlingTeamID);
+        // console.log("battingteam: ", api2.BattingTeamID);
+        // console.log("bowlingteam: ", api2.BowlingTeamID);
         // const firstInningData = await FirstInning.findOne({ BowlingTeamID: bowlingTeamID });
 
          // Check if the inning already exists
@@ -88,7 +88,18 @@ async function second(req,res){
              await ExistingInning.save();
 
         }else{
+
+            const isBattingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BattingTeamID });
+            const isBowlingTeamExist = await PlayerOnGround.findOne({ teamID: req.body.BowlingTeamID });
+            const isPlayerOnStrikeExist = await PlayerOnGround.findOne({ playerID: req.body.Player_ID_OnStrike });
+            const isPlayerOnBowlingExist = await PlayerOnGround.findOne({playerID:req.body.Player_IDonBowling});
+     
+            if(!isBowlingTeamExist || !isBattingTeamExist || !isPlayerOnBowlingExist|| !isPlayerOnStrikeExist){
+                return res.status(400).json({ message: "One or more teams/players not found" })
+            }
+
             const newSecond = await new SecondInning({
+                
                 BattingTeamName: req.body.BattingTeamName,
                 BattingTeamID: req.body.BattingTeamID,
                 BowlingTeamID: req.body.BowlingTeamID,
