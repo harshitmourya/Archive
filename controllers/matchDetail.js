@@ -64,7 +64,7 @@ async function saveMatchDetails(req, res) {
                     team1TotalPlayers:req.body.team1TotalPlayers,
                     team2_id: req.body.team2_id,
                     team2Name: req.body.team2Name,
-                    team1TotalPlayers:req.body.team1TotalPlayers,
+                    team2TotalPlayers:req.body.team2TotalPlayers,
                     totalOver: req.body.totalOver,
                     TosswinningTeamId: req.body.TosswinningTeamId,
                     choose: req.body.choose
