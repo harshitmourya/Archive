@@ -34,11 +34,11 @@ async function twoMatch(req, res) {
                 if (isteamWicket || isteamOver) {
                     console.log('First Inning is Over');
                     message = 'First Inning is Over';
-                    return true;
+                    
                 } else {
                     console.log("first Inning is running");
                     message = isBattingTeam;
-                    return false;
+                    ;
                 }
             } else {
                 const isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
@@ -50,11 +50,11 @@ async function twoMatch(req, res) {
                 if (isteamOver || isteamWicket) {
                     console.log('Second Inning is Over');
                     message = 'Second Inning is Over';
-                    return true;
+                    
                 } else {
                     console.log("Second Inning is running");
                     message = isSecondBattingTeam;
-                    return false;
+                    
                 }
             }
         } catch (error) {
