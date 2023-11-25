@@ -19,8 +19,8 @@ async function saveMatchDetails(req, res) {
         console.log("New matchdata: ", matchdata);
         console.log("Team1_id: ", req.body.team1_id);
         console.log("Team2_id: ", req.body.team2_id);
-        console.log("team1players :-" ,team1TotalPlayers);
-        console.log("team2players :-" ,team2TotalPlayers);
+        console.log("team1players :-" ,req.body.team1TotalPlayers);
+        console.log("team2players :-" ,req.body.team2TotalPlayers);
 
 
         async function isExistTeam() {
