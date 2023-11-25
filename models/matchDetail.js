@@ -11,6 +11,10 @@ const matchDetailSchema = new mongoose.Schema({
         required:true,
         ref:"TeamDetails"
     },
+    team1TotalPlayers:{
+        type: Number,
+        required:true
+    },
     team2_id: {
         type: mongoose.Schema.Types.ObjectId,
         required: true,
@@ -20,6 +24,10 @@ const matchDetailSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.String,
         required:true,
         ref:"TeamDetails"
+    },
+    team2TotalPlayers:{
+        type:Number,
+        required:true
     },
     totalOver: {
         type: Number,

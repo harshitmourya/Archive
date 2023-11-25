@@ -1,6 +1,7 @@
 const FirstInning = require("../models/FirstInnings");
 const TwoMatchData = require("../models/saveMatchBTW2teams");
 const PlayerOnGround = require("../models/playerOnGroundDetail");
+const matchDetail = require("../models/matchDetail")
 
 const SecondInning = require("../models/SecondInnings");
 
@@ -31,15 +32,15 @@ async function twoMatch(req, res) {
             if (isBattingTeam) {
 
                 // checking the team overCount is end or not
-                const teamOverLimit = 50;
-                const teamWicketLimit = 11;
+                // const teamOverLimit = 50;
+                // const teamWicketLimit = 11;
 
                 // checking teamOverCount is equal or greater than teamOverCount
-                const isteamOver = isBattingTeam.teamOverCount >= teamOverLimit;
+                const isteamOver = isBattingTeam.teamOverCount >= matchDetail.teamOver;
                 console.log("overs are end", isteamOver)
 
                 // checking teamWicketCount is equal or greater than teamWicketlimit
-                const isteamWicket = isBattingTeam.WicketCount >= teamWicketLimit;
+                const isteamWicket = isBattingTeam.WicketCount >= matchDetail.t;
                 console.log("all batsman are out", isteamWicket);
                 console.log("FirstInning",isBattingTeam)
 
