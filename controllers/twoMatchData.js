@@ -5,6 +5,7 @@ const matchDetail = require("../models/matchDetail")
 const SecondInning = require("../models/SecondInnings");
 
 
+
 async function twoMatch(req, res) {
     var battingTeamID = req.body.battingTeamID;
     var bowlingTeamID = req.body.bowlingTeamID;
@@ -17,7 +18,7 @@ async function twoMatch(req, res) {
     console.log(twoTeamDetail);
     console.log("BattingTeam :-", battingTeamID);
     console.log("BowlingTeam :-", bowlingTeamID);
- 
+
     async function isTeam() {
         try {
             let message = '';
@@ -31,11 +32,9 @@ async function twoMatch(req, res) {
                 if (isteamWicket || isteamOver) {
                     console.log('First Inning is Over');
                     message = 'First Inning is Over';
-                    
                 } else {
                     console.log("first Inning is running");
                     message = isBattingTeam;
-                    ;
                 }
             } else {
                 const isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
@@ -47,13 +46,13 @@ async function twoMatch(req, res) {
                 if (isteamOver || isteamWicket) {
                     console.log('Second Inning is Over');
                     message = 'Second Inning is Over';
-                    
                 } else {
                     console.log("Second Inning is running");
                     message = isSecondBattingTeam;
-                    
                 }
             }
+
+            return message; // Return the message
         } catch (error) {
             console.log(error.message, " BattingTeam and BowlingTeam not found");
             return false; // Return false in case of an error
@@ -69,7 +68,7 @@ async function twoMatch(req, res) {
         res.status(200).json({
             message: "Two match data saved successfully",
             inningStatus: inningEnd ? 'Inning Over' : 'Inning Running',
-             // Include the data in the response
+            data: inningEnd, // Include the data in the response
         });
     } catch (error) {
         console.log("Error saving two match data:", error);
@@ -78,7 +77,6 @@ async function twoMatch(req, res) {
 }
 
 module.exports = twoMatch;
-
 
 
 
