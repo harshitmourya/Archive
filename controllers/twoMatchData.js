@@ -30,12 +30,9 @@ async function twoMatch(req, res) {
 
                 // checking teamOverCount is equal or greater than teamOverCount
                 const isteamOver = isBattingTeam.teamOverCount >= matchDetail.teamOver;
-                console.log("overs are end", isteamOver)
-
                 // checking teamWicketCount is equal or greater than teamWicketlimit
                 const isteamWicket = isBattingTeam.WicketCount >= matchDetail.team1TotalPlayers;
-                console.log("all batsman are out", isteamWicket);
-                console.log("FirstInning",isBattingTeam)
+                 console.log("FirstInning",isBattingTeam)
 
                 if(isteamWicket || isteamOver){
                     console.log('First Inning is Over');
@@ -53,15 +50,12 @@ async function twoMatch(req, res) {
                 
                 // checking teamOverCount is equal or greater than teamOverCount
                 const isteamOver = isSecondBattingTeam.teamOverCount >= matchDetail.teamOver;
-                console.log("overs are end", isteamOver)
-
                 // checking teamWicketCount is equal or greater than teamWicketlimit
                 const isteamWicket = isSecondBattingTeam.WicketCount >= matchDetail.team2TotalPlayers;
-                console.log("all batsman are out", isteamWicket);
 
                 console.log("SecondInning:-",isSecondBattingTeam);
 
-                if(teamOverLimit || teamWicketLimit){
+                if(isteamOver || isteamWicket){
                     console.log('Second Inning is Over');
                     message = "Second Inning is Over";
                     return true;
@@ -87,13 +81,13 @@ async function twoMatch(req, res) {
         const allTeamData = await twoTeamDetail.save();
         console.log(allTeamData);
 
-        isTeam();
+      const inningEnd =   await isTeam();
 
 
         res.status(200).json({
             message: "Two match data saved successfully",
+            inningStatus: inningOver ? 'Inning Over' : 'Inning Running',
 
-            isBattingTeam
         });
     } catch (error) {
         console.log(error);
