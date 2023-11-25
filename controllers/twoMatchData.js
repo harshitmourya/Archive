@@ -5,10 +5,7 @@ const matchDetail = require("../models/matchDetail")
 
 const SecondInning = require("../models/SecondInnings");
 
-var message = ""
-var isBattingTeam = '';
-var isFound = " ";
-var teamOverCount = '';
+
 
 async function twoMatch(req, res) {
     var battingTeamID = req.body.battingTeamID;
@@ -27,13 +24,9 @@ async function twoMatch(req, res) {
     async function isTeam() {
         try {
 
-            isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
+           const  isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
 
             if (isBattingTeam) {
-
-                // checking the team overCount is end or not
-                // const teamOverLimit = 50;
-                // const teamWicketLimit = 11;
 
                 // checking teamOverCount is equal or greater than teamOverCount
                 const isteamOver = isBattingTeam.teamOverCount >= matchDetail.teamOver;
@@ -58,10 +51,6 @@ async function twoMatch(req, res) {
 
                 const isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
                 
-                //checking the team overCount is end or not
-                // const teamOverLimit = 50;
-                // const teamWicketLimit = 11;
-
                 // checking teamOverCount is equal or greater than teamOverCount
                 const isteamOver = isSecondBattingTeam.teamOverCount >= matchDetail.teamOver;
                 console.log("overs are end", isteamOver)
