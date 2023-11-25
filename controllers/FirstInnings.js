@@ -54,6 +54,7 @@ async function first(req, res) {
             Player_ID_OnStrike: req.body.Player_ID_OnStrike,
             //Player_ID_OfStrike: req.body.Player_ID_OfStrike,
             Player_IDonBowling: req.body.Player_IDonBowling,
+            BowlingTeamID:req.body.BowlingTeamID
           
         });
 
