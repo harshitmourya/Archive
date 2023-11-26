@@ -43,7 +43,7 @@ const allFirstschema = new mongoose.Schema({
         ref:"PlayerOnGround"
     },
     Player_IDonBowling:{
-        type:String,
+        type:mongoose.Schema.Types.ObjectId,
         required: true,
         ref:"PlayerOnGround"
     },
