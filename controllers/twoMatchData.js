@@ -64,6 +64,7 @@ async function twoMatch(req, res) {
         console.log("Saved Data:", allTeamData);
 
         const inningEnd = await isTeam();
+        console.log("inning :-",inningEnd)
 
         res.status(200).json({
             message: "Two match data saved successfully",
