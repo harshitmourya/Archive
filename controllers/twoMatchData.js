@@ -1,12 +1,12 @@
 const FirstInning = require("../models/FirstInnings");
 const TwoMatchData = require("../models/saveMatchBTW2teams");
 const PlayerOnGround = require("../models/playerOnGroundDetail");
-const matchDetail = require("../models/matchDetail")
+const matchDetail = require("../models/matchDetail");
 const SecondInning = require("../models/SecondInnings");
-
 
 var isSecondBattingTeam = '';
 var isBattingTeam = '';
+
 async function twoMatch(req, res) {
     var battingTeamID = req.body.battingTeamID;
     var bowlingTeamID = req.body.bowlingTeamID;
@@ -24,7 +24,7 @@ async function twoMatch(req, res) {
         try {
             let message = '';
 
-             isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
+            isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
 
             if (isBattingTeam) {
                 const isteamOver = isBattingTeam.teamOverCount >= matchDetail.totalOver;
@@ -33,12 +33,12 @@ async function twoMatch(req, res) {
                 if (isteamWicket || isteamOver) {
                     console.log('First Inning is Over');
                     message = 'First Inning is Over';
-                }// } else {
-                //     console.log("first Inning is running");
-                //     message = isBattingTeam;
-                // }
+                } else {
+                    console.log("First Inning is running");
+                    message = isBattingTeam;
+                }
             } else {
-                 isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
+                isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
                 const isteamOver = isSecondBattingTeam.teamOverCount >= matchDetail.totalOver;
                 const isteamWicket = isSecondBattingTeam.wicketCount >= matchDetail.team2TotalPlayers;
 
@@ -65,7 +65,7 @@ async function twoMatch(req, res) {
         console.log("Saved Data:", allTeamData);
 
         const inning = await isTeam();
-        console.log("inning :-",inning)
+        console.log("inning :-", inning);
 
         res.status(200).json({
             message: "Two match data saved successfully",
@@ -79,7 +79,6 @@ async function twoMatch(req, res) {
 }
 
 module.exports = twoMatch;
-
 
 
 
