@@ -32,10 +32,10 @@ async function twoMatch(req, res) {
                 if (isteamWicket || isteamOver) {
                     console.log('First Inning is Over');
                     message = 'First Inning is Over';
-                } else {
-                    console.log("first Inning is running");
-                    message = isBattingTeam;
-                }
+                }// } else {
+                //     console.log("first Inning is running");
+                //     message = isBattingTeam;
+                // }
             } else {
                 const isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
                 const isteamOver = isSecondBattingTeam.teamOverCount >= matchDetail.totalOver;
@@ -63,13 +63,13 @@ async function twoMatch(req, res) {
         const allTeamData = await twoTeamDetail.save();
         console.log("Saved Data:", allTeamData);
 
-        const inningEnd = await isTeam();
+        const inning = await isTeam();
         console.log("inning :-",inningEnd)
 
         res.status(200).json({
             message: "Two match data saved successfully",
-            inningStatus: inningEnd ? 'Inning Over' : 'Inning Running',
-            data: inningEnd, // Include the data in the response
+            inningStatus: inning ? 'Inning Over' : 'Inning Running',
+            data: inning, // Include the data in the response
         });
     } catch (error) {
         console.log("Error saving two match data:", error);
