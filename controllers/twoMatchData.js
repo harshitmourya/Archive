@@ -27,6 +27,9 @@ async function twoMatch(req, res) {
             isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
 
             if (isBattingTeam) {
+
+                console.log( "over :-",matchDetail)
+
                 const isteamOver = isBattingTeam.teamOverCount >= matchDetail.totalOver;
                 const isteamWicket = isBattingTeam.wicketCount >= matchDetail.team1TotalPlayers;
 
