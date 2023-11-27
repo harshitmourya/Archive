@@ -15,7 +15,10 @@ async function twoMatch(req, res) {
         battingTeamID: battingTeamID,
         bowlingTeamID: bowlingTeamID,
     });
-
+    console.log("First Inning Detail: ", FirstInning);
+    let a = await matchDetail.findOne();
+    console.log("Overs: ",a.totalOver);
+    console.log("Team 1 Player: ", a.team1TotalPlayers);
     console.log(twoTeamDetail);
     console.log("BattingTeam :-", battingTeamID);
     console.log("BowlingTeam :-", bowlingTeamID);
@@ -25,13 +28,14 @@ async function twoMatch(req, res) {
             let message = '';
 
             isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
-
+            console.log("Current Over: ", isBattingTeam.teamOverCount);
+            console.log("Check: ", isBattingTeam.teamOverCount >= a.totalOver);
             if (isBattingTeam) {
 
                 console.log( "over :-",matchDetail)
 
-                const isteamOver = isBattingTeam.teamOverCount >= matchDetail.totalOver;
-                const isteamWicket = isBattingTeam.wicketCount >= matchDetail.team1TotalPlayers;
+                const isteamOver = isBattingTeam.teamOverCount >= a.totalOver;
+                const isteamWicket = isBattingTeam.wicketCount >= a.team1TotalPlayers;
 
                 if (isteamWicket || isteamOver) {
                     console.log('First Inning is Over');
@@ -42,10 +46,12 @@ async function twoMatch(req, res) {
                 }
             } else {
                 isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
-                const isteamOver = isSecondBattingTeam.teamOverCount >= matchDetail.totalOver;
-                const isteamWicket = isSecondBattingTeam.wicketCount >= matchDetail.team2TotalPlayers;
+                console.log("Second Inning: ",isSecondBattingTeam);
+                const isteamOver = isSecondBattingTeam.teamOverCount >= a.totalOver;
+                const isteamWicket = isSecondBattingTeam.wicketCount >= a.team2TotalPlayers;
 
-                console.log("SecondInning:-", isSecondBattingTeam);
+                console.log("Count Over team:-", isteamOver);
+                console.log("Count Wicket Team", isteamWicket);
 
                 if (isteamOver || isteamWicket) {
                     console.log('Second Inning is Over');

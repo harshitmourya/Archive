@@ -29,7 +29,7 @@ app.get('/test', authenticaterequest, function (_req, res) {
 })
 // router.route("/login").post(saveLoginDetail);
 
-app.post('/login',authenticaterequest,saveLoginDetail)
+app.post('/login',saveLoginDetail)
 //set router or middleware
 app.use("/api/players", players_routes);
 

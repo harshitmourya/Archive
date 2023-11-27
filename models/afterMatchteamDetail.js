@@ -16,9 +16,12 @@ const afterMatchSchema = new mongoose.Schema({
     Team1Wickets:{
       type:Number,
       required: true
+
     },
-
-
+    Team1OversPlayed :{
+        type:Number,
+        required:true
+    },
     Team2ID: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
@@ -35,13 +38,16 @@ const afterMatchSchema = new mongoose.Schema({
         type:Number,
         required: true
     },
-
-    WinningTeamId:{
-        type: String,
+    Team2OversPlayed:{
+        type:Number,
         required:true
     },
-    WinningTeamName: {
-        type:String,
+    FirstInning:{
+        type: Boolean,
+        required:true
+    },
+    secondInning: {
+        type:Boolean,
         required:true
     }
 
