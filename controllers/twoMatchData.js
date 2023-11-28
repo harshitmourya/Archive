@@ -16,10 +16,10 @@ async function twoMatch(req, res) {
         bowlingTeamID: bowlingTeamID,
     });
     console.log("First Inning Detail: ", FirstInning);
-    let a = await matchDetail.findOne();
-    console.log("Overs: ",a.totalOver);
-    console.log("Team 1 Player: ", a.team1TotalPlayers);
-    console.log(twoTeamDetail);
+    // let a = await matchDetail.findOne();
+    // console.log("Overs: ",a.totalOver);
+    // console.log("Team 1 Player: ", a.team1TotalPlayers);
+    // console.log(twoTeamDetail);
     console.log("BattingTeam :-", battingTeamID);
     console.log("BowlingTeam :-", bowlingTeamID);
 
@@ -28,8 +28,10 @@ async function twoMatch(req, res) {
             let message = '';
 
             isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
+            const a = await matchDetail.findOne();
             console.log("Current Over: ", isBattingTeam.teamOverCount);
             console.log("Check: ", isBattingTeam.teamOverCount >= a.totalOver);
+
             if (isBattingTeam) {
 
                 console.log( "over :-",matchDetail)
@@ -44,7 +46,9 @@ async function twoMatch(req, res) {
                     console.log("First Inning is running");
                     message = isBattingTeam;
                 }
-            } else {
+            }
+             
+
                 isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
                 console.log("Second Inning: ",isSecondBattingTeam);
                 const isteamOver = isSecondBattingTeam.teamOverCount >= a.totalOver;
@@ -54,13 +58,17 @@ async function twoMatch(req, res) {
                 console.log("Count Wicket Team", isteamWicket);
 
                 if (isteamOver || isteamWicket) {
-                    console.log('Second Inning is Over');
-                    message = 'Second Inning is Over';
-                } else {
+                    console.log('Second Inning is not started yet');
+                    message = 'Second Inning is not started yet';
+                }  if(isteamOver == a.totalOver){
+                    console.log("Match has ended");
+                    message = "Match has ended";
+                }
+                else {
                     console.log("Second Inning is running");
                     message = isSecondBattingTeam;
                 }
-            }
+            
 
             return message; // Return the message
         } catch (error) {
