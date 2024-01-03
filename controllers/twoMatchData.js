@@ -63,10 +63,21 @@ async function twoMatch(req, res) {
                 }  if(isteamOver == a.totalOver){
                     console.log("Match has ended");
                     message = "Match has ended";
-                }
+                } if(isteamWicket == a.team2TotalPlayers){
+                    console.log('Match has ended');
+                    message = 'Match has ended';
+                }  
                 else {
                     console.log("Second Inning is running");
-                    message = isSecondBattingTeam;
+                    message = isSecondBattingTeam; 
+                }
+
+                if(isBattingTeam.teamRunCount > isSecondBattingTeam.teamRunCount){
+                    console.log("Team1 has won the match");
+                    message = `${battingTeamID} has won the match`;
+                } else{
+                    console.log('Team2 has won the match');
+                    message = `${bowlingTeamID} has wont the match`;
                 }
             
 
