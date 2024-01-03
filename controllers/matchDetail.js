@@ -32,7 +32,7 @@ async function saveMatchDetails(req, res) {
                 console.log("team1ID :-", isteam1);
                 console.log("team2ID :-", isteam2);
 
-                if(isteam1 || isteam2){
+                if(!isteam1 || !isteam2){
                     return res.status(400).json({message:"One or both teams not found"})
                 }
 
