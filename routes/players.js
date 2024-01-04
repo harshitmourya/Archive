@@ -24,12 +24,15 @@ const getAllteam = require("../controllers/getAllteam");
 const DeleteSinglePlayer = require("../controllers/deleteSinglePlayer");
 const AllteamDelete = require("../controllers/TeamDeleteAll");
 const SingleTeamDelete = require("../controllers/TeamSingleDelete");
+const determineWinner = require("../controllers/WinningMatchTeam");
+
 
 
 router.route("/").get(getAllPlayers);
 router.route("/team/:teamID").get(teamPlayers);
 router.route("/:_id").get(runningMatch);
-router.route("/all/getAllteam").get(getAllteam)
+router.route("/all/getAllteam").get(getAllteam);
+router.route("/winner/:battingteamID/:bowlingteamID").get(determineWinner);
 router.route("/newPlayer").post(savePlayerDetails);
 router.route("/registration").post(saveUserDetails);
 router.route("/team").post(saveTeamDetail);
