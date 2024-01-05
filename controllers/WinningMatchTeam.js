@@ -44,9 +44,12 @@ async function determineWinner(req,res) {
                 return `${bowlingTeamID} Team has won the match based on fewer wickets lost`;
             } else {
                 return "Match is a draw";
-            }
+            }    
         }
+    
+
     } catch (error) {
+        res.status(500).json({message:"internal server error"})
         console.error("Error determining winner:", error.message);
         return "Error determining winner";
     }

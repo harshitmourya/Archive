@@ -82,7 +82,7 @@ async function twoMatch(req, res) {
                 } else {
                     console.log('The match is a draw');
                     matchwin = 'The match is a draw';
-                }
+                } 
             }
 
             
