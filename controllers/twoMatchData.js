@@ -4,6 +4,9 @@ const PlayerOnGround = require("../models/playerOnGroundDetail");
 const matchDetail = require("../models/matchDetail");
 const SecondInning = require("../models/SecondInnings");
 
+
+// ... (other imports)
+
 var isSecondBattingTeam = '';
 var isBattingTeam = '';
 
@@ -15,82 +18,85 @@ async function twoMatch(req, res) {
         battingTeamID: battingTeamID,
         bowlingTeamID: bowlingTeamID,
     });
-    // console.log("First Inning Detail: ", FirstInning);
 
     console.log("BattingTeam :-", battingTeamID);
     console.log("BowlingTeam :-", bowlingTeamID);
 
-    async function isTeam(){
+    async function isTeam() {
         try {
             let message = '';
 
             isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
             const a = await matchDetail.findOne();
-            console.log("Current Over: ",  isBattingTeam ? isBattingTeam.teamOverCount : null);
-            console.log("Check: ",isBattingTeam ? isBattingTeam.teamOverCount >= a.totalOver : null);
+            console.log("Current Over: ", isBattingTeam ? isBattingTeam.teamOverCount : null);
 
             if (isBattingTeam) {
-
-                // console.log("over :-", matchDetail)
-
                 const isteamOver = isBattingTeam.teamOverCount >= a.totalOver;
-                const isteamOverRunning = isBattingTeam.teamOverCount <= a.totalOver;
-                const isteamWicketRunning = isBattingTeam.wicketCount <=a.team1TotalPlayers;
                 const isteamWicket = isBattingTeam.wicketCount >= a.team1TotalPlayers;
+                const isteamOverRunning = isBattingTeam.teamOverCount < a.totalOver;
+                const isteamWicketRunning = isBattingTeam.wicketCount < a.team1TotalPlayers;
 
-                if (isteamWicket || isteamOver) {
+                if (isteamWicketRunning && isteamOverRunning) {
+                    console.log("First Inning is running", isBattingTeam);
+                    message = isBattingTeam;
+                } else if (isteamWicket || isteamOver) {
                     console.log('First Inning is Over');
                     message = 'First Inning is Over';
-
-                } else if (isteamOverRunning && isteamWicketRunning) {
-                    console.log("First Inning is running",isBattingTeam);
-                    message = isBattingTeam;
                 } else {
                     console.log("First Inning data not found");
                     message = 'First Inning data not found';
                 }
+            } else {
+                console.log('First Inning is not started yet');
+                message = 'First Inning is not started yet';
             }
-
 
             isSecondBattingTeam = await SecondInning.findOne().sort({ createdAt: -1 }).exec();
-                let secondInningmessage = ''
-            const isteamOver = isSecondBattingTeam.teamOverCount >= a.totalOver;
-            const isteamWicket = isSecondBattingTeam.wicketCount >= a.team2TotalPlayers;
+            let secondInningmessage = '';
+            if (isSecondBattingTeam) {
+                const isteamOver = isSecondBattingTeam.teamOverCount >= a.totalOver;
+                const isteamWicket = isSecondBattingTeam.wicketCount >= a.team2TotalPlayers;
+                const isOverTeam = isSecondBattingTeam.teamOVerCount <= a.totalOver;
+                const isWicketTeam = isSecondBattingTeam.wicketCount <= a.team2TotalPlayers;
 
-            console.log("Count Over team:-", isteamOver);
-            console.log("Count Wicket Team", isteamWicket);
+                console.log("Count Over team:-", isteamOver);
+                console.log("Count Wicket Team", isteamWicket);
 
-            if (isteamOver || isteamWicket) {
-                console.log('Second Inning is Over');
-                secondInningmessage = 'Second Inning is Over';
-            } else if (isSecondBattingTeam) {
-                console.log("Second Inning is running", isSecondBattingTeam);
-                secondInningmessage = 'Second Inning is Running';
-            } else {
-                console.log("Second Inning data not found");
-                secondInningmessage = 'Second Inning data not found';
-            } 
-            let matchwin = ''
-             if (isBattingTeam && isSecondBattingTeam) {
-                
-                if (isBattingTeam.teamRunCount > isSecondBattingTeam.teamRunCount) {
-                    console.log("Team1 has won the match");
-                    matchwin = 'Team1 has won the match';
-                } else if (isBattingTeam.teamRunCount < isSecondBattingTeam.teamRunCount) {
-                    console.log('Team2 has won the match');
-                    matchwin = 'Team2 has won the match';
+                if (isteamOver || isteamWicket) {
+                    console.log('Second Inning is Over');
+                    secondInningmessage = 'Second Inning is Over';
                 } else {
-                    console.log('The match is a draw');
-                    matchwin = 'The match is a draw';
-                } 
+                    // Check for the winning condition inside the block where second inning is running
+                    let matchwin = '';
+                    if (isBattingTeam && isSecondBattingTeam) {
+                        if (isBattingTeam.teamRunCount > isSecondBattingTeam.teamRunCount) {
+                            console.log("Team1 has won the match");
+                            matchwin = 'Team1 has won the match';
+                        } else if (isBattingTeam.teamRunCount < isSecondBattingTeam.teamRunCount) {
+                            console.log('Team2 has won the match');
+                            matchwin = 'Team2 has won the match';
+                        } else {
+                            console.log('The match is a draw');
+                            matchwin = 'The match is a draw';
+                        }
+                        // console.log("Second Inning is running", isSecondBattingTeam);
+                        // secondInningmessage = 'Second Inning is Running';
+                        if (isOverTeam && isWicketTeam) {
+                            console.log("Second Inning is running", isSecondBattingTeam);
+                            secondInningmessage = 'Second Inning is Running ';
+                        }
+                    }
+                   
+                }
+            } else {
+                console.log("Second Inning is not started yet");
+                secondInningmessage = 'Second Inning is not started yet';
             }
 
-            
-
-            return message; 
+            return message;
         } catch (error) {
             console.log(error.message, " BattingTeam and BowlingTeam not found");
-            return false; 
+            return false;
         }
     }
 
@@ -99,11 +105,10 @@ async function twoMatch(req, res) {
         console.log("Saved Data:", allTeamData);
 
         const inning = await isTeam();
-        //console.log("inning :-", inning);
 
         res.status(200).json({
             message: "Two match data saved successfully",
-            data: inning, // Include the data in the response
+            data: inning,
         });
     } catch (error) {
         console.log("Error saving two match data:", error);
