@@ -28,10 +28,10 @@ var loadExampleData = function() {
 		redirectUris: []
 	});
 	var user = new userModel({
-		username: 'pushpraj',
-		password:  "Qwerty@123",
-        email:"pk@gmail.com",
-        phone:"9876543210"
+		username: username,
+		password:  password,
+        email:email,
+        phone:phone
 	});
 
 	client1.save(function(err, client) {
