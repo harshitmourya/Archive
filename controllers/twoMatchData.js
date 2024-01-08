@@ -4,7 +4,7 @@ const PlayerOnGround = require("../models/playerOnGroundDetail");
 const matchDetail = require("../models/matchDetail");
 const SecondInning = require("../models/SecondInnings");
 
-
+// ... (other imports)
 // ... (other imports)
 
 var isSecondBattingTeam = '';
@@ -56,8 +56,8 @@ async function twoMatch(req, res) {
             if (isSecondBattingTeam) {
                 const isteamOver = isSecondBattingTeam.teamOverCount >= a.totalOver;
                 const isteamWicket = isSecondBattingTeam.wicketCount >= a.team2TotalPlayers;
-                const isOverTeam = isSecondBattingTeam.teamOVerCount <= a.totalOver;
-                const isWicketTeam = isSecondBattingTeam.wicketCount <= a.team2TotalPlayers;
+                const isOverTeam = isSecondBattingTeam.teamOVerCount <a.totalOver;
+                const isWicketTeam = isSecondBattingTeam.wicketCount <a.team2TotalPlayers;
 
                 console.log("Count Over team:-", isteamOver);
                 console.log("Count Wicket Team", isteamWicket);
@@ -65,33 +65,28 @@ async function twoMatch(req, res) {
                 if (isteamOver || isteamWicket) {
                     console.log('Second Inning is Over');
                     secondInningmessage = 'Second Inning is Over';
-                } else {
-                    // Check for the winning condition inside the block where second inning is running
-                    let matchwin = '';
+                } else if (isOverTeam && isWicketTeam){
+                    console.log("Second Inning is running", isSecondBattingTeam);
+                    secondInningmessage = 'Second Inning is Running';
+                }   
+                 
+            } else {
+                console.log("Second Inning is not started yet");
+                secondInningmessage = 'Second Inning is not started yet';
+            } 
+            let matchwin = '';
                     if (isBattingTeam && isSecondBattingTeam) {
                         if (isBattingTeam.teamRunCount > isSecondBattingTeam.teamRunCount) {
                             console.log("Team1 has won the match");
                             matchwin = 'Team1 has won the match';
                         } else if (isBattingTeam.teamRunCount < isSecondBattingTeam.teamRunCount) {
                             console.log('Team2 has won the match');
-                            matchwin = 'Team2 has won the match';
+                            matchwin = 'Team2 has won the match ';
                         } else {
                             console.log('The match is a draw');
-                            matchwin = 'The match is a draw';
-                        }
-                        // console.log("Second Inning is running", isSecondBattingTeam);
-                        // secondInningmessage = 'Second Inning is Running';
-                        if (isOverTeam && isWicketTeam) {
-                            console.log("Second Inning is running", isSecondBattingTeam);
-                            secondInningmessage = 'Second Inning is Running ';
+                            matchwin = 'The match is a draw'  ;
                         }
                     }
-                   
-                }
-            } else {
-                console.log("Second Inning is not started yet");
-                secondInningmessage = 'Second Inning is not started yet';
-            }
 
             return message;
         } catch (error) {

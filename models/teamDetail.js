@@ -10,6 +10,16 @@ const teamDetailSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    userID:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:"registrationDetail"
+    },
+    username:{
+        type:mongoose.Schema.Types.String,
+        required:true,
+        ref:"registrationDetail"
+    }
 });
 
 
