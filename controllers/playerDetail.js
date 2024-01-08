@@ -1,5 +1,6 @@
 const Player = require("../models/playerDetail");
 const Team = require("../models/teamDetail");
+const registationDetail = require('../models/registrationDetail');
 
 const savePlayerDetails = async (req, res) => {
     //console.log("Request Body",req.body);
