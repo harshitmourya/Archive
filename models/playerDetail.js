@@ -21,13 +21,13 @@ const playerDetailSchema = new mongoose.Schema({
      userID:{
         type:mongoose.Schema.Types.ObjectId,
         require:true,
-        ref:"registrationDetail"
+        ref:"LoginDetail"
         
     },
     username:{
         type:mongoose.Schema.Types.String,
         required:true,
-        ref:"registationDetail"
+        ref:"LoginDetail"
     }
     // teamName: {
     //     type: String,..

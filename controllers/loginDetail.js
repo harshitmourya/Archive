@@ -6,8 +6,8 @@ const saveLoginDetail = async (req, res) => {
   try {
     const { password } = req.body;
     const email = req.body.email;
-    console.log(email)
-    console.log(password)
+    // console.log(email)
+    // console.log(password)
 
     const existingLogin = await LoginDetail.findOne({ email });
 
@@ -24,7 +24,7 @@ const saveLoginDetail = async (req, res) => {
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
-        const login = new LoginDetail({ email });
+        const login = new LoginDetail({ email ,password });
 
         login.save();
         console.log("login successful")
