@@ -8,7 +8,6 @@ const saveLoginDetail = async (req, res) => {
     const email = req.body.email;
     console.log(email)
     console.log(password)
-  
 
     const existingLogin = await LoginDetail.findOne({ email });
 
@@ -20,20 +19,18 @@ const saveLoginDetail = async (req, res) => {
       });
     }
 
-    const user = await RegisterdUser.findOne({email: id});
+    const user = await RegisterdUser.findOne({ email });  // Fix: Change 'id' to 'email'
     if (user) {
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
-
-       const login = new LoginDetail({email});
+        const login = new LoginDetail({ email });
 
         login.save();
-        console.log("login successfull")
+        console.log("login successful")
         res.status(200).json({
-          message: 'Login successfull',
-          email:"you logged in as :-",id
-          
+          message: 'Login successful',
+          email: `You logged in as: ${email}`
         });
       } else {
         res.status(401).json({
@@ -46,6 +43,7 @@ const saveLoginDetail = async (req, res) => {
       });
     }
   } catch (error) {
+    console.error(error);  // Log the error for debugging
     res.status(500).json({
       error: 'Internal server error',
     });
@@ -53,4 +51,3 @@ const saveLoginDetail = async (req, res) => {
 };
 
 module.exports = saveLoginDetail;
-
