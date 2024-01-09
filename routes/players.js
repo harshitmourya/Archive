@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-// const authenticaterequest = require("../app/")
+const authenticaterequest = require("../app")
 
 const getAllPlayers = require("../controllers/getAllPlayer");
 const savePlayerDetails = require("../controllers/playerDetail");

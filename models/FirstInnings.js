@@ -100,6 +100,14 @@ const allFirstschema = new mongoose.Schema({
     MaidenOver: {
         type:Number,
         required:true
+    },
+    userID:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true
+    },
+    username:{
+        type:mongoose.Schema.Types.String,
+        required:true
     }
     
 },{
