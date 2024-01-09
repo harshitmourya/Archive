@@ -31,7 +31,8 @@ async function twoMatch(req, res) {
     async function isTeam() {
         try {
             let message = '';
-            // const loggedUserID = req.user.id;
+            const loggedUser = await loginDetail.findOne()
+            if(loggedUser == userID)
             
 
             isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
