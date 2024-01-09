@@ -85,6 +85,8 @@ async function first(req, res) {
             existingInning.NOBall = req.body.NOBall;
             existingInning.teamOverCount = req.body.teamOverCount;
             existingInning.MaidenOver = req.body.MaidenOver; 
+            existingInning.userID = req.body.userID;
+            existingInning.username = req.body.username
                
             // Save the updated document
             await existingInning.save();
@@ -121,7 +123,9 @@ async function first(req, res) {
                 wideBall: req.body.wideBall,
                 NOBall: req.body.NOBall,
                 teamOverCount: req.body.teamOverCount,
-                MaidenOver: req.body.MaidenOver
+                MaidenOver: req.body.MaidenOver,
+                userID:req.body.userID,
+                username:req.body.username
 
             })
             await newlyInning.save();
