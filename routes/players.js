@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const authenticaterequest = require("../app")
+// const authenticaterequest = require("../app/")
 
 const getAllPlayers = require("../controllers/getAllPlayer");
 const savePlayerDetails = require("../controllers/playerDetail");
@@ -36,7 +36,7 @@ router.route("/winner/:TwoMatch").get(determineWinner);
 router.route("/newPlayer").post(savePlayerDetails);
 router.route("/registration").post(saveUserDetails);
 router.route("/team").post(saveTeamDetail);
- router.route("/login").post,(saveLoginDetail);
+ router.route("/login").post(saveLoginDetail);
 router.route("/toss").post(create);
 router.route("/tossGet").post(tossGet);
 router.route("/ball").post(saveBallDetail);

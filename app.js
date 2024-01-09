@@ -18,7 +18,7 @@ app.get("/", (_req, res) => {
 });
 
 
-const saveLoginDetail = require("./controllers/loginDetail")
+// const saveLoginDetail = require("./controllers/loginDetail")
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
