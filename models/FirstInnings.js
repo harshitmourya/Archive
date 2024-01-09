@@ -103,11 +103,13 @@ const allFirstschema = new mongoose.Schema({
     },
     userID:{
         type:mongoose.Schema.Types.ObjectId,
-        required:true
+        required:true,
+        ref:"registrationDetail"
     },
     username:{
         type:mongoose.Schema.Types.String,
-        required:true
+        required:true,
+        ref:"registrationDetail"
     }
     
 },{
