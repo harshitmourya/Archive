@@ -81,6 +81,8 @@ async function second(req,res){
             ExistingInning.NOBall = req.body.NOBall;
             ExistingInning.teamOverCount = req.body.teamOverCount;
             ExistingInning.MaidenOver = req.body.MaidenOver;
+            ExistingInning.userID = req.body.userID;
+            ExistingInning.username = req.body.username
 
             console.log('inside is exist');
             
@@ -121,7 +123,9 @@ async function second(req,res){
                 wideBall: req.body.wideBall,
                 NOBall: req.body.NOBall,
                 teamOverCount: req.body.teamOverCount,
-                MaidenOver: req.body.MaidenOver
+                MaidenOver: req.body.MaidenOver,
+                userID:req.body.userID,
+                username:req.body.username
 
             })
             console.log(' else inside is exist')
