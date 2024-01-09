@@ -23,13 +23,13 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-app.post('/oauth/token', obtainToken);
+app.post('/oauth/token/login', obtainToken);
 app.get('/test', authenticaterequest, function (_req, res) {
     res.send('Success')
 })
 // router.route("/login").post(saveLoginDetail);
 
-app.post('/login',saveLoginDetail)
+// app.post('/login',saveLoginDetail)
 //set router or middleware
 app.use("/api/players", players_routes);
 

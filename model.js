@@ -27,12 +27,14 @@ var loadExampleData = function() {
 		],
 		redirectUris: []
 	});
+    
 	var user = new userModel({
-		username: username,
-		password:  password,
-        email:email,
-        phone:phone
+		username: req.body.username,
+		password:  req.body.password,
+        email:req.body.email,
+        phone:req.body.phone
 	});
+    console.log("user:-",user)
 
 	client1.save(function(err, client) {
 
