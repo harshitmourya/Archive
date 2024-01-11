@@ -7,7 +7,7 @@ const registrationDetailSchema= new mongoose.Schema ({
     username: {
         type: String,
         require: true,
-        minlength: 3
+        minlength: 4
     },
     email: {
         type: String,
