@@ -9,7 +9,7 @@ async function teamPlayers(req,res){
     console.log("Teamid",teamID);
 
     try {
-        const players = await PlayerOnGround.find({teamID:teamID});
+        const players = await PlayerOnGround.find({teamID});
         console.log("TeamPlayers",players)
         if(players.length === 0){
             return res.status(404).json({ message : "No players found for the given team ID"});

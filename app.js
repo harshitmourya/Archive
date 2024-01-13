@@ -63,7 +63,7 @@ function obtainToken(req, res) {
         }).catch(function (err) {
             res.status(err.code || 500).json(err);
 
-
+                    console.log("erere ")
         })
 }
 function authenticaterequest(req, res, next) {

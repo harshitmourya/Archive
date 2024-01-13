@@ -31,13 +31,20 @@ async function twoMatch(req, res) {
     async function isTeam() {
         try {
             let message = '';
-            const loggedUser = await loginDetail.findOne()
-            if(loggedUser == userID)
-            
-
+            // const loggedUser = await TwoMatchData.findOne({userID})
+            // if(loggedUser !== userID){
+            //     console.log("user",userID);
+            //     console.log("Id",req.body.userID)
+            //     res.status(400).json({message:"user not verified"})
+                
+            // } else
+            //  {
+            //     console.log("log user",loggedUser)
+            //     res.status(200).json({message:'user  verified'})
+            // }
             isBattingTeam = await FirstInning.findOne().sort({ createdAt: -1 }).exec();
+            console.log("Current Over: ", isBattingTeam ? isBattingTeam.teamOverCount : null);  
             const a = await matchDetail.findOne();
-            console.log("Current Over: ", isBattingTeam ? isBattingTeam.teamOverCount : null);
 
             if (isBattingTeam) {
                 const isteamOver = isBattingTeam.teamOverCount >= a.totalOver;
@@ -102,6 +109,7 @@ async function twoMatch(req, res) {
             console.log(error.message, " BattingTeam and BowlingTeam not found");
             return false;
         }
+        
     }
 
     try {
