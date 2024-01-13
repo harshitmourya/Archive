@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const clientModel=require('./models/client');
 const tokenModel=require('./models/token');
 const userModel=require('./models/registrationDetail');
+const uuid  = require("uuid")
 //  const saveRegistrationDetail = require("./controllers/registrationDetail")
 
 // *******************************************************
@@ -70,18 +71,17 @@ var loadExampleData = function() {
 
 
 // *******************************************************
-var getAccessToken=function(token,callback){
+var getAccessToken = function (token, callback) {
     tokenModel.findOne({
-        accessToken:token
-    }).lean().exec((function(callback, err, token) {
+        accessToken: token
+    }).populate('user').lean().exec((function (callback, err, token) {
+        if (!token) {
+            console.error(' Access Token not found');
+            console.log(token);
+        }
 
-		if (!token) {
-			console.error(' Access Token not found');
-            console.log(token)
-		}
-
-		callback(err, token);
-	}).bind(null, callback));
+        callback(err, token.user); // Return the user associated with the access token
+    }).bind(null, callback));
 };
 
 
@@ -98,45 +98,44 @@ var getClient=function(clientId,clientSecret,callback){
     }).bind(null,callback));
 };
 
+var saveToken = function (token, client, user, callback) {
+    token.accessToken = uuid.v4(); // Generate a unique access token for each user
 
-var saveToken=function(token,client,user,callback){
-
-    token.client={
-        id:client.clientId
+    token.client = {
+        id: client.clientId
     };
 
-    token.user={
-        _id:user._id.toString(),
-        username:user.username,
-        email:user.email,
-        phone:user.phone,
-        password:user.password
+    token.user = {
+        _id: user._id.toString(),
+        username: user.username,
+        email: user.email,
+        phone: user.phone,
+        password: user.password
     };
 
-    var tokeninstance=new tokenModel(token);
-    tokeninstance.save((function(callback,err,token){
-        if(!token){
+    var tokeninstance = new tokenModel(token);
+    tokeninstance.save((function (callback, err, token) {
+        if (!token) {
             console.error('Access Token not found');
-        } else{
-            token =token.toObject();
+        } else {
+            token = token.toObject();
             delete token._id;
             delete token._v;
         }
-        callback(err,token);
-
-    }).bind(null,callback))
+        callback(err, token);
+    }).bind(null, callback));
 };
 
-var getUser=function(username,password,callback){
+var getUser = function (username, password, callback) {
     userModel.findOne({
-        username:username,
+        username: username,
         password: password
-}).lean().exec((function(callback,err,user){
-    if(!user){
-        console.error("User not Found ");
-    }
-    callback(err,user);
-}).bind(null,callback));
+    }).lean().exec((function (callback, err, user) {
+        if (!user) {
+            console.error("User not Found ");
+        }
+        callback(err, user);
+    }).bind(null, callback));
 };
 
 var getUserFromClient=function(client,callback){
