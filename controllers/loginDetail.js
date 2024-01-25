@@ -31,7 +31,7 @@ const saveLoginDetail = async (req, res) => {
         res.status(200).json({
           message: 'Login successful',
           email: `You logged in as: ${email}`,
-          id
+          _id
         });
       } else {
         res.status(401).json({
