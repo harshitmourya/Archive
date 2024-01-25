@@ -9,7 +9,7 @@ const saveLoginDetail = async (req, res) => {
     // console.log(email)
     // console.log(password)
 
-    const existingLogin = await LoginDetail.findOne({ email });
+    const existingLogin = await LoginDetail.findOne({ email,_id });
 
     if (existingLogin) {
       console.log("User has already logged in");
