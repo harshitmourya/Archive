@@ -15,7 +15,8 @@ const saveLoginDetail = async (req, res) => {
       console.log("User has already logged in");
       return res.status(200).json({
         message: 'User has already logged in',
-        email: `You are logged in as: ${email}`
+        email: `You are logged in as: ${email}`,
+        _id
       });
     }
 
