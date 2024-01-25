@@ -9,14 +9,14 @@ const saveLoginDetail = async (req, res) => {
     // console.log(email)
     // console.log(password)
 
-    const existingLogin = await LoginDetail.findOne({ email,_id });
+    const existingLogin = await LoginDetail.findOne({ email});
 
     if (existingLogin) {
       console.log("User has already logged in");
       return res.status(200).json({
         message: 'User has already logged in',
         email: `You are logged in as: ${email}`,
-        _id
+        _id:existingLogin._id
       });
     }
 
@@ -32,7 +32,7 @@ const saveLoginDetail = async (req, res) => {
         res.status(200).json({
           message: 'Login successful',
           email: `You logged in as: ${email}`,
-          _id
+          _id:login._id
         });
       } else {
         res.status(401).json({
