@@ -24,7 +24,7 @@ const saveLoginDetail = async (req, res) => {
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
-        const login = new LoginDetail({ email ,password });
+        const login = new LoginDetail({ email ,password ,_id});
 
         login.save();
         console.log("login successful")
