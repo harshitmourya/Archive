@@ -24,9 +24,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // app.post('/oauth/token/login', obtainToken);
-// app.get('/test', authenticaterequest, function (_req, res) {
-//     res.send('Success')
-// })
+app.get('/test', authenticaterequest, function (_req, res) {
+    res.send('Success')
+})
 // router.route("/login").post(saveLoginDetail);
 
 // app.post('/login',saveLoginDetail)
@@ -46,39 +46,39 @@ async function start() {
 
 
 
-// const oauthServer = new OAuth2Server({
-//     model: require('./model.js'),
-//     accessTokenLifetime: 4 * 60 *  60,
-//     allowBearerTokensInQueryString: false
+const oauthServer = new OAuth2Server({
+    model: require('./model.js'),
+    accessTokenLifetime: 4 * 60 *  60,
+    allowBearerTokensInQueryString: false
 
-// });
+});
 
-// function obtainToken(req, res) {
-//     var request = new Request(req);
-//     var response = new Response(res);
+function obtainToken(req, res) {
+    var request = new Request(req);
+    var response = new Response(res);
 
-//     return oauthServer.token(request, response)
-//         .then(function (token) {
-//             res.json(token);
-//         }).catch(function (err) {
-//             res.status(err.code || 500).json(err);
+    return oauthServer.token(request, response)
+        .then(function (token) {
+            res.json(token);
+        }).catch(function (err) {
+            res.status(err.code || 500).json(err);
 
                     
-//         })
-// }
-// function authenticaterequest(req, res, next) {
-//     var request = new Request(req);
-//     var response = new Response(res);
+        })
+}
+function authenticaterequest(req, res, next) {
+    var request = new Request(req);
+    var response = new Response(res);
 
-//     return oauthServer.authenticate(request, response)
-//         .then(function (token) {
+    return oauthServer.authenticate(request, response)
+        .then(function (token) {
 
-//             response.locals.auth = {_id: token._id, user:token.user}
-//             next();
-//         }).catch(function (err) {
-//             res.status(err.code || 500).json(err);
-//         });
-// }
+            response.locals.auth = {_id: token._id, user:token.user}
+            next();
+        }).catch(function (err) {
+            res.status(err.code || 500).json(err);
+        });
+}
 
 
 start();
