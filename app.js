@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// app.post('/oauth/token/login', obtainToken);
+ app.post('/oauth/token/login', obtainToken);
 app.get('/test', authenticaterequest, function (_req, res) {
     res.send('Success')
 })
