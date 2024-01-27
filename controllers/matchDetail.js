@@ -13,7 +13,10 @@ async function saveMatchDetails(req, res) {
             team2TotalPlayers:req.body.team2TotalPlayers,
             totalOver: req.body.totalOver,
             TosswinningTeamId: req.body.TosswinningTeamId,
-            choose: req.body.choose
+            choose: req.body.choose,
+            userID:req.body.userID,
+            username:req.body.username
+
         });
 
         console.log("New matchdata: ", matchdata);
@@ -21,7 +24,8 @@ async function saveMatchDetails(req, res) {
         console.log("Team2_id: ", req.body.team2_id);
         console.log("team1players :-" ,req.body.team1TotalPlayers);
         console.log("team2players :-" ,req.body.team2TotalPlayers);
-        console.log(".")
+        console.log("UserID :-",req.body.userID);
+        console.log("username :-",req.body.username);
 
 
         async function isExistTeam() {
@@ -55,6 +59,8 @@ async function saveMatchDetails(req, res) {
                 ExistingMatch.team2TotalPlayers = req.body.team2TotalPlayers;
                 ExistingMatch.totalOver = req.body.totalOver;
                 ExistingMatch.choose = req.body.choose;
+                ExistingMatch.userID = req.body.userID;
+                ExistingMatch.username = req.body.username
 
                 await ExistingMatch.save();
 
@@ -68,7 +74,10 @@ async function saveMatchDetails(req, res) {
                     team2TotalPlayers:req.body.team2TotalPlayers,
                     totalOver: req.body.totalOver,
                     TosswinningTeamId: req.body.TosswinningTeamId,
-                    choose: req.body.choose
+                    choose: req.body.choose,
+                    userID:req.body.userID,
+                    username:req.body.username
+    
                 });
 
                 await secondExist.save();

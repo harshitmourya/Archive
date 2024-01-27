@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const userLogin = require("./loginDetail");
 
 const matchDetailSchema = new mongoose.Schema({
     team1_id: {
@@ -40,6 +41,16 @@ const matchDetailSchema = new mongoose.Schema({
     choose:{
         type:String,
         required:true
+    },
+    userId:{
+        type:mongoose.Schema.Types.ObjectId,
+        required:true,
+        ref:"LoginDetail"
+    },
+    username:{
+        type:mongoose.Schema.Types.String,
+        required:true,
+        ref:"LoginDetail"
     }
     
 });
