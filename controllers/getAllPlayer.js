@@ -7,7 +7,7 @@ const getAllPlayers = async (req, res) => {
         console.log("userID -", req.params.userID);
 
         if (!allPlayers.length) {
-            res.status(404).json({ message: 'User not found' });
+            res.status(404).json({ message: 'User not found for the given id' });
             return;
         } else {
             res.status(200).json(allPlayers);
