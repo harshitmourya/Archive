@@ -13,20 +13,20 @@ var isBattingTeam = '';
 async function twoMatch(req, res) {
     var battingTeamID = req.body.battingTeamID;
     var bowlingTeamID = req.body.bowlingTeamID;
-    var userID = req.body.userID;
-    var username = req.body.username
+    // var userID = req.body.userID;
+    // var username = req.body.username
 
     const twoTeamDetail = new TwoMatchData({
         battingTeamID: battingTeamID,
         bowlingTeamID: bowlingTeamID,
-        userID:userID,
-        username:username
+        // userID:userID,
+        // username:username
     });
 
     console.log("BattingTeam :-", battingTeamID);
     console.log("BowlingTeam :-", bowlingTeamID);
-    console.log("userID :-",userID);
-    console.log("username :-",username);
+    // console.log("userID :-",userID);
+    // console.log("username :-",username);
 
     async function isTeam() {
         try {

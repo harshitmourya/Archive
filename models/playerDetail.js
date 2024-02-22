@@ -17,17 +17,6 @@ const playerDetailSchema = new mongoose.Schema({
         maxlangth: 10,
         Unique: true
         
-    },
-     userID:{
-        type:mongoose.Schema.Types.ObjectId,
-        require:true,
-        ref:"LoginDetail"
-        
-    },
-    username:{
-        type:mongoose.Schema.Types.String,
-        required:true,
-        ref:"LoginDetail"
     }
     // teamName: {
     //     type: String,..

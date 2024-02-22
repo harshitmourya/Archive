@@ -41,16 +41,6 @@ const matchDetailSchema = new mongoose.Schema({
     choose:{
         type:String,
         required:true
-    },
-    userId:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true,
-        ref:"LoginDetail"
-    },
-    username:{
-        type:mongoose.Schema.Types.String,
-        required:true,
-        ref:"LoginDetail"
     }
     
 });

@@ -103,16 +103,6 @@ const allsecondschema = new mongoose.Schema({
     MaidenOver: {
         type:Number,
         required:true
-    },
-    userID:{
-        type:mongoose.Schema.Types.ObjectId,
-        required:true,
-        ref:"LoginDetail"
-    },
-    username:{
-        type:mongoose.Schema.Types.String,
-        required:true,
-        ref:"LoginDetail"
     }
     
 },{
