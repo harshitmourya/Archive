@@ -28,7 +28,7 @@ const determineWinner = require("../controllers/WinningMatchTeam");
 
 
 
-router.route("/All/:userID").get(getAllPlayers);
+router.route("/All").get(getAllPlayers);
 router.route("/team/:teamID").get(teamPlayers);
 router.route("/:_id").get(runningMatch);
 router.route("/all/getAllteam").get(getAllteam);

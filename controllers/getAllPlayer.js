@@ -2,9 +2,9 @@ const Player = require("../models/playerDetail");
 
 const getAllPlayers = async (req, res) => {
     try {
-        const allPlayers = await Player.find({ userID: req.params.userID });
+        const allPlayers = await Player.find();
 
-        console.log("userID -", req.params.userID);
+        // console.log("userID -", req.params.userID);
 
         if (!allPlayers.length) {
             res.status(404).json({ message: 'User not found for the given id' });
