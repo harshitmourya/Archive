@@ -6,33 +6,31 @@ const saveLoginDetail = async (req, res) => {
   try {
     const { password } = req.body;
     const email = req.body.email;
-    // console.log(email)
-    // console.log(password)
 
-    const existingLogin = await LoginDetail.findOne({ email});
+    const existingLogin = await LoginDetail.findOne({ email });
 
     if (existingLogin) {
       console.log("User has already logged in");
       return res.status(200).json({
         message: 'User has already logged in',
         email: `You are logged in as: ${email}`,
-        _id:existingLogin._id
+        _id: existingLogin._id
       });
     }
 
-    const user = await RegisterdUser.findOne({ email });  // Fix: Change 'id' to 'email'
+    const user = await RegisterdUser.findOne({ email });
     if (user) {
       const passwordMatch = await bcrypt.compare(password, user.password);
 
       if (passwordMatch) {
-        const login = new LoginDetail({ email ,password ,_id});
+        const login = new LoginDetail({ email, password, _id: user._id }); // Assign user._id to _id
 
         login.save();
         console.log("login successful")
         res.status(200).json({
           message: 'Login successful',
           email: `You logged in as: ${email}`,
-          _id:login._id
+          _id: login._id
         });
       } else {
         res.status(401).json({
@@ -45,7 +43,7 @@ const saveLoginDetail = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error(error);  // Log the error for debugging
+    console.error(error);
     res.status(500).json({
       error: 'Internal server error',
     });
