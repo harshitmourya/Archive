@@ -29,7 +29,7 @@ const saveTeamDetail = async (req, res) => {
         } catch (error) {
             console.error("Error saving team: ", error);
             return res.status(500).send({
-                error: "Internal server error"
+                error: "Internal server error "
             });
         }
     }
