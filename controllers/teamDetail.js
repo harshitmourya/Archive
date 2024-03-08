@@ -1,89 +1,43 @@
-const teamDetail = require("../models/teamDetail");
-
+const TeamDetail = require("../models/teamDetail");
 
 const saveTeamDetail = async (req, res) => {
     console.log(req.body);
 
+    const teams = req.body;
+    const savedTeams = [];
 
-    var obj = req.body;
-    console.log("Obj: ", obj)
-    var isFound = false;
+    for (const teamData of teams) {
+        console.log("Team Data: ", teamData);
+        const team = new TeamDetail(teamData);
 
-    for (const element of obj) {
+        try {
+            const existingTeam = await TeamDetail.findOne({ team: teamData.team });
+            if (existingTeam) {
+                console.log("Team already exists: ", existingTeam);
+                return res.status(400).send({
+                    team: existingTeam.team,
+                    message: "Team already exists"
+                });
+            }
 
-        console.log("Team 1: ", element);
-        const team = new teamDetail(element);
-        const teamName = element.team;
-        const place = element.place;
-        console.log("Team Name: " + teamName);
-        console.log("Place: ", place);
-
-        const data = await teamDetail.findOne({ teamName: teamName });
-        console.log("Data: ", data);
-
-        if (data) {
-            console.log("Found ********: ")
-            isFound = true
-            res.status(400).send({
-                team: teamName,
-                message: "Already Exists"
-            })
-        } else {
-            team.save()
+            const savedTeam = await team.save();
+            savedTeams.push({
+                team_id: savedTeam._id,
+                team: savedTeam.team,
+                place: savedTeam.place
+            });
+        } catch (error) {
+            console.error("Error saving team: ", error);
+            return res.status(500).send({
+                error: "Internal server error"
+            });
         }
-    };
-    res.status(201).send(
-        {
-            Message: "Saved Successfylly",
-            obj
-        }
-    )
+    }
+
+    return res.status(201).send({
+        message: "Teams saved successfully",
+        teams: savedTeams
+    });
 };
 
-;
-
-
-
-
-
-
-
-
-
-
-// const saveTeamDetail = async (req, res) => {
-//     console.log(req.body);
-//     var isFound = false
-//     const team = new teamDetail(req.body);
-//     const teamName = req.body.team;
-//     console.log("Team Name: "+teamName);
-
-
-
-//     const data = await teamDetail.findOne({team: teamName}); 
-//     console.log("Data: ", data);
-
-
-//     if (data){
-//         console.log("Found ********: ")
-//         isFound = true
-//         res.status(400).send({
-//             team: teamName,
-//             message: "Already Exists"
-//         })
-//     }else {
-//         team.save()
-//         res.status(201).send(
-//             {
-//                 Message: "Saved Successfylly",
-//                 team: teamName,
-//                 place: req.body.place
-//             }
-//         )};
-//     console.log("Is Found: ", isFound)
-// };
-
-
-
 module.exports = saveTeamDetail;
-
